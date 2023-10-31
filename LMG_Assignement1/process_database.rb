@@ -2,7 +2,7 @@
 # Lucía Muñoz Gil, MSc in Computational Biology, Bioinformatics Programming Challenges course, 2023
 # Code for Assigment #1
 
-#--------LOAD EXTERNAL LIBRARIES AND MODULES--------------------------------------------------
+#-------- LOAD EXTERNAL LIBRARIES AND MODULES --------------------------------------------------
 
 require 'date' # Date library to update the date of the last seed planting
 require './SeedStock' # Load all 4 classes created for this assignement
@@ -11,7 +11,7 @@ require './Gene'
 require './SeedStockDatabase'
 
 
-#----INPUT FILE NAMES AS ARGUMENTS FROM COMMAND LINE-------------------------------------------
+#---- INPUT FILE NAMES AS ARGUMENTS FROM COMMAND LINE -------------------------------------------
 
 if ARGV.length != 4 # Check for one common human error: not specifying all 4 file names needed for the assignement
     puts "Incorrect number of files passed. There must be 4 files"
@@ -31,7 +31,7 @@ else
 end
 
 
-#---------------- MAIN CODE--------------------------------------------------------------------
+#---------------- MAIN CODE --------------------------------------------------------------------
 
 # TASK 1: Seed planting simulation and new genebank state printed to new file
 
