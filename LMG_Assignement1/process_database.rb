@@ -44,7 +44,7 @@ sesion.load_from_file(seed_stock_file)  # Load info from seed_stock_data.tsv fil
                                         # of file is saved (for using it when writing new file).
 
 sesion.stock_instances.each do |_key, gene_object|  # For each SeedStock object in previously created hash, the
-    gene_object.plant_seeds(7)                      # planting of 7 gr of seeds is simulated, and genebank info is
+    gene_object.plant_seeds(7)                      # planting of 7 gr of seeds is simulated and genebank info is
 end                                                 # updated. Hash has the updated info as it storages class objects
 
 sesion.write_database(new_file_path)  # New genbank state (represented in the SeedStock objects) is printed into new file
@@ -53,7 +53,6 @@ sesion.write_database(new_file_path)  # New genbank state (represented in the Se
 
 sesion.load_from_file(gene_info)    # Load info from gene_information.tsv file and create new Gene objects, which 
                                     # are saved into hash (and are accesible by Gene ID).
-
 
 File.open(cross_data, "r").each.with_index do |line, line_num|  # read the information in cross_data.tsv file line by line
     next if line_num==0 # skip header
