@@ -34,11 +34,15 @@ directamente le printeas todos los miembros de la red
 # 15. Confidence score: importante: FILTRAR por calidad, habría que ver que valores ponemos, no sé si se puede filtrar en el query o hacemos filtros x codigo 
 
 # He hecho muchas cosas, algunas las uso y otras no, las he puesto porque puede que nos sirvan en el futuro
+
+#LO QUE HACE EL CODIGO:
 # de momento mi código crea redes con miembros únicos a deph 1
+
+#LO QUE NO HACE EL CODIGO_
 # falta rescursividad
 # falta kegg y GO
 # falta filtrar y mergear las redes
-# y falta ver una forma de como conectar el locus name con el identificador de uniprotkb ¿se puede hacer un has?
+# y falta ver una forma de como conectar el locus name con el identificador de uniprotkb ¿se puede hacer un has? --> me pongo con esto de momento
 
 # lo más complicado de entender son las funciones ?eql, == y hash, esas son para comprobar que el objeto no esté ya en el hash
 # creo q se podría haber hecho más sencillo pero bueno si tienes dudas lo hablamos
