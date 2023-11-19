@@ -1,46 +1,108 @@
-# == NetworkMember
-# This blbalblabla
-#
-# == Summary
-  
+class Members
 
-class NetworkMember
+    attr_accessor :uniprot_id, :times_searched, :direct_interactors
 
-    attr_accessor :id_interactor, :other_ids
+    @@coexpresed_members= []
+    @@all_members = Hash.new
 
-# Get/Set the new 
-# @!attribute [rw]
-# @return [String] The namethi
-
-    def initialize(
-        id_interactor:"IDXXX",
-        other_ids:"IDXXX"
-    )
-        @id_interactor = id_interactor  # ojo hay dos members por interaccion, es decir linea de la reques
-        @other_ids = other_ids
-
+    def initialize( uniprot_id: "IDXXX" )
+        @uniprot_id = uniprot_id
+        @times_searched = 0
+        @direct_interactors = []
+        @@all_members[@uniprot_id] = self
     end
 
-    # Set method of gene id, not every member would have gene id, only interactors in the gene lists
-    def gene_id=(gene_name)
+    def gene_id=(gene_name) #SET gene_id
         @gene_id = gene_name
     end
 
-    # Get method for gene_id, this would be useful for the report I imagine
-    def gene_id
+    def gene_id #GET gene_id
         @gene_id
     end
+
+    def set_network=(network)
+        @network = network
+    end
     
-    # This would be made so intances with the same @id_interactor would be considered as equal (independent from object_id)
-    # This is useful when working with hashes, we ensure that objects with the same content are considered equañ
-    
-    # key? uses eql? mehtod to compare? and that is why we have to override so it considers two objects equals if having the same value for id_interactor attribute
-    def eql?(other) 
-        self.id_interactor == other.id_interactor if other.is_a?(NetworkMember) # just to make sure we are comparing objects of the same class
+    def get_network
+        @network
     end
 
-    def hash    # this code generates a hash code based on the attribute values
-        # it is important for the correct fucntioning of hash-based collections (like Ruby's Hash), since we are storing our netmembers in a hash, we do this so when we look for duplicates, we do it by id
-        @id_interactor.hash
+    def all_coexpresed_members
+        @@coexpresed_members
+    end
+
+    def all_members
+        @@all_members
+    end
+    
+    def self.read_from_file(filename) # Leer archivo y crear Members con cada ATG...
+        coexpressed_file = File.open(filename, 'r')
+        coexpressed_file.readlines.each do |line|
+            locus_name=line.chomp
+            togo_address = "http://togows.dbcls.jp/entry/uniprot/#{locus_name}/accessions.json"
+            togo_response = rest_api_request(togo_address)  # search in TOGO db the uniprot id for each locus name
+            result = JSON.parse(togo_response.body)
+            if result.is_a?(Array) && result.any?
+                uniprot_id = result.first.first   
+            else
+                puts "No UniProt entry found for locus #{locus_name}. Please remove this entry from gene list"
+                next
+            end
+            member = self.new(uniprot_id: uniprot_id)   # create new instance of this class for each gene of the list with uniprotid
+            member.gene_id=(locus_name) # and genename
+            @@coexpresed_members << member
+        end
+    end
+
+    
+
+    def find_interactors(intact_address=INTACT_BASE_ADDRESS, species=SPECIES, formato=TAB25_FORMAT)
+        intact_address = "#{intact_address}search/interactor/#{@uniprot_id}/?query=#{species}&format=#{formato}"
+        response = rest_api_request(intact_address)
+        if response.empty? 
+          @direct_interactors = "Response Not Available in IntAct"
+          return 1
+        end
+        response.body.each_line do |line|
+            values = line.chomp.split("\t")
+            [0,1].each do |id|
+                interactor = extract_xref(values[id])
+                if !interactor.nil? && !interactor.include?(self.uniprot_id)    # check if it not empty or the query interactor
+                    if @@all_members.include?(interactor) # Si ya existe
+                        @direct_interactors << @@all_members[interactor]
+                    else
+                        interactor = self.class.new(uniprot_id: interactor) 
+                        @direct_interactors << interactor
+                    end # Si todavía no existe
+                end
+            end
+        end
+    end
+
+
+    def add_to_network #Coge los @direct_interactors de la instancia Member y 1)Define su @network como el del objeto Member 2)Los añade al Networks del Member
+        if @direct_interactors.empty? || @direct_interactors.is_a?(String)
+            return 1
+        end
+        @direct_interactors.each do |interactor|
+            unless self.get_network.network_members.key?(interactor.uniprot_id)
+                interactor.set_network=(self.get_network)
+                self.get_network.add_member(interactor)
+            end
+        end
+    end
+
+    def register_search
+        @times_searched += 1
+    end
+
+
+    def eql?(other) 
+        self.uniprot_id == other.uniprot_id if other.is_a?(Networks) # just to make sure we are comparing objects of the same class
+    end
+
+    def hash    
+        @uniprot_id.hash
     end
 end

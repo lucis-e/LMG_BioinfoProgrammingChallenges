@@ -1,22 +1,9 @@
 require 'rest-client'
-require 'json'  # esto de momento no lo uso
-require './NetworkMember'
-require './InteractionNetwork'
+require 'json'
+require './Members'
+require './Networks'
 
-
-# IntAct DB to retrieve protein - protein interaction
-# ----------------------------------------------------------
-INTACT_BASE_ADDRESS = 'http://www.ebi.ac.uk/Tools/webservices/psicquic/intact/webservices/current/'
-
-# Parameters for Intact DB
-interactor_locus_name = 'AT4g18960' # we should iterate in this, also we would first create a hash to change this
-SPECIES = 'species:arabidopsis'  # filtering by species
-TAB25_FORMAT = 'tab25'  # retrieving in tab25 format
-
-# Query url
-
-#-----------------------------------------------------------------
-# FUNCTION: Programatic access to REST APIs and get responses
+#------------------MAIN FUNCTIONS --------------------------------------------
 
 def rest_api_request(adress)
   RestClient::Request.execute(
@@ -25,31 +12,68 @@ def rest_api_request(adress)
     headers: {'Accept' => 'application/json'})  # use the RestClient::Request object's method "execute"
 end
 
-
-#-----------------------------------------------------------------
-
-
-#-----------------------------------------------------------------
-
-INTERACTION_DEPTH = 2   # Constant, that is why it is in caps, depth = 2 so we look for direct interactors and direct interactos of our direct interactors
-
-network = InteractionNetwork.new
-network.get_interactions(interactor_locus_name, INTERACTION_DEPTH)
-
-
-
-
-#-------------------------------------------------------------------------------------------------------
-## PARA COMPROBAR QUE LA COSA FUNCIONA
-para_comprobar_duplicados = []
-
-network.network_members.keys.each do |instance|
-  para_comprobar_duplicados << instance # append al array
-  puts [instance.id_interactor, instance.gene_id]
+def extract_xref(element) # syntax of TAB25 <XREF><VALUE>(<DESCRIPTION>)
+  # match regex to get <VALUE>
+  match_data = element.match(/:(\S+)(?:\(|$)/)  
+  # get the actual value
+  val = match_data[1] if match_data
+  return(val)
 end
 
-puts para_comprobar_duplicados.length
-#puts 
-#puts para_comprobar_duplicados.uniq! != nil   # uniq! modifies the array variable (removes duplicate elements) , returns nil if no changes were performed
-# False =  no hay repetidos
 
+#-----------------------------------------------------------------------------
+
+
+
+Members.read_from_file('ArabidopsisSubNetwork_GeneList.txt')
+
+
+# Parameters for this assignment
+INTACT_BASE_ADDRESS = 'http://www.ebi.ac.uk/Tools/webservices/psicquic/intact/webservices/current/'
+SPECIES = 'species:arabidopsis' 
+TAB25_FORMAT = 'tab25'
+
+
+def recursive_search(member, network, depth)
+
+  if depth == 1
+    puts "Estamos en nivel #{depth}"
+    member.find_interactors if member.direct_interactors.empty? 
+    member.add_to_network
+    if member.direct_interactors.empty? || member.direct_interactors.is_a?(String)
+      puts "Interacciones para #{member.uniprot_id} no encontradas en IntAct, corte de la recursividad"
+      return 1
+    end
+    return recursive_search(member.direct_interactors, network, depth = depth + 1)
+
+  elsif depth == 2
+    puts "Estamos en nivel #{depth}"
+    list_of_interactors = []
+    member.each do |one_member|
+      one_member.find_interactors if one_member.direct_interactors.empty?
+      one_member.add_to_network
+      list_of_interactors += one_member.direct_interactors
+    end
+
+    return recursive_search(list_of_interactors, network, depth = depth + 1) 
+
+  else
+    puts "Hemos pasado el depth 2"
+    return 1
+  end
+
+end
+
+Members.all_coexpresed_members.each do |member|
+  puts
+  puts
+  puts "ANALIZANDO NUEVO MIEMBRO con #{member.gene_id} y #{member.uniprot_id}"
+  network = Networks.new()
+  member.set_network=(network)
+  network.add_member(member)
+  recursive_search(member, network, depth=1)
+  puts "Este miembro tiene la red #{network} con miembros:"
+  network.network_members.each do |_key, value|
+    puts value.uniprot_id
+  end
+end
