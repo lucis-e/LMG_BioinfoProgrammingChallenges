@@ -12,5 +12,7 @@ class Networks
   def add_member(net_member)
     @network_members[net_member.uniprot_id] = net_member
   end
+
+  
   
 end

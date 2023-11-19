@@ -71,20 +71,20 @@ class Members
             values = line.chomp.split("\t")
             [0,1].each do |id|
                 interactor = extract_xref(values[id])
-                if !interactor.nil? && !interactor.include?(self.uniprot_id)    # check if it not empty or the query interactor
-                    if @@all_members.include?(interactor) # Si ya existe
+                if !interactor.include?(@uniprot_id) && interactor.match(/[OPQ][0-9][A-Z0-9]{3}[0-9]$/)   # check if it not empty or the query interactor
+                    if @@all_members.key?(interactor) # Si ya existe
                         @direct_interactors << @@all_members[interactor]
                     else
                         interactor = self.class.new(uniprot_id: interactor) 
                         @direct_interactors << interactor
-                    end # Si todavía no existe
+                    end 
                 end
             end
         end
     end
 
 
-    def add_to_network #Coge los @direct_interactors de la instancia Member y 1)Define su @network como el del objeto Member 2)Los añade al Networks del Member
+    def add_to_network 
         if @direct_interactors.empty? || @direct_interactors.is_a?(String)
             return 1
         end
@@ -100,13 +100,13 @@ class Members
         @times_searched += 1
     end
 
-
-
     def eql?(other) 
-        self.uniprot_id == other.uniprot_id if other.is_a?(Networks) # just to make sure we are comparing objects of the same class
+        self.uniprot_id == other.uniprot_id if other.is_a?(Networks) 
     end
 
     def hash    
         @uniprot_id.hash
     end
+        
+
 end

@@ -20,7 +20,6 @@ def extract_xref(element) # syntax of TAB25 <XREF><VALUE>(<DESCRIPTION>)
   return(val)
 end
 
-
 #-----------------------------------------------------------------------------
 
 
@@ -32,46 +31,34 @@ Members.read_from_file('ArabidopsisSubNetwork_GeneList.txt')
 INTACT_BASE_ADDRESS = 'http://www.ebi.ac.uk/Tools/webservices/psicquic/intact/webservices/current/'
 SPECIES = 'species:arabidopsis' 
 TAB25_FORMAT = 'tab25'
+DEPTH = 2
 
 
 def recursive_search(member, network, depth)
 
-  if depth == 1
-    puts "Estamos en nivel #{depth}"
-    member.find_interactors if member.direct_interactors.empty? 
-    member.add_to_network
-    if member.direct_interactors.empty? || member.direct_interactors.is_a?(String)
-      puts "Interacciones para #{member.uniprot_id} no encontradas en IntAct, corte de la recursividad"
-      return 1
-    end
-    return recursive_search(member.direct_interactors, network, depth = depth + 1)
-
-  elsif depth == 2
-    puts "Estamos en nivel #{depth}"
-    list_of_interactors = []
-    member.each do |one_member|
-      one_member.find_interactors if one_member.direct_interactors.empty?
-      one_member.add_to_network
-      list_of_interactors += one_member.direct_interactors
-    end
-
-    return recursive_search(list_of_interactors, network, depth = depth + 1) 
-
+  if depth < 1
+    return "End of search"
   else
-    puts "Hemos pasado el depth 2"
-    return 1
+    protein_list.map{|element| element.find_interactors if member.direct_interactors.empty?}  # seach only when we have not already searched
+    member.add_to_network
+    if member.direct_interators.empty? || member.direct_interactors.is_a?(String)
+      next  # go for next element in the array
+    end 
+    return recursive_search(member.direct_interactors, network, depth = depth + 1)
   end
+  
+
 
 end
 
-Members.all_coexpresed_members.each do |member|
+Members.all_coexpresed_members.each do |gene|
   puts
   puts
-  puts "ANALIZANDO NUEVO MIEMBRO con #{member.gene_id} y #{member.uniprot_id}"
+  puts "ANALIZANDO NUEVO MIEMBRO con #{gene.gene_id} y #{gene.uniprot_id}"
   network = Networks.new()
-  member.set_network=(network)
-  network.add_member(member)
-  recursive_search(member, network, depth=1)
+  gene.set_network=(network)
+  network.add_member(gene)
+  recursive_search(gene, network, depth=1)
   puts "Este miembro tiene la red #{network} con miembros:"
   network.network_members.each do |_key, value|
     puts value.uniprot_id
