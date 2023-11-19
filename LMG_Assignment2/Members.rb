@@ -1,3 +1,6 @@
+require 'json'
+
+
 class Members
 
     attr_accessor :uniprot_id, :times_searched, :direct_interactors
@@ -28,7 +31,7 @@ class Members
         @network
     end
 
-    def all_coexpresed_members
+    def self.all_coexpresed_members
         @@coexpresed_members
     end
 
@@ -96,6 +99,7 @@ class Members
     def register_search
         @times_searched += 1
     end
+
 
 
     def eql?(other) 
