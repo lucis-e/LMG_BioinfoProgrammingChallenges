@@ -3,12 +3,12 @@ class Networks
   attr_accessor :network_members, :number_of_networks
 
   @@total_networks = 0
-  @@all_networks = Hash.new
+  @@all_networks = []
 
   def initialize
     @network_members = []
     @@total_networks += 1
-    @@all_networks[self] = @network_members # esto habria que cambiarlo, no sé si es útil
+    @@all_networks << self # más optimo un array
   end
 
   def add_member(net_member)
@@ -49,15 +49,33 @@ class Networks
     recursive_search(list_of_interactors, depth - 1)
   end
 
-  def self.create_and_merge(gene, depth)
-    network = Networks.new  # create the new network
-    #gene.set_network=(network)
-    network.add_member(gene)
-    network.recursive_search([gene], depth) # search and assign all the interactors found to this net
+  def merge_with(other_network)
 
-    existing_network == @@all_networks.values.find{ |network| network.network_members.keys.any?}
+    common_members = @network_members & other_network.network_members # check if there are any common members (this is actually already checked, maybe not necessary)
 
-    return(network)
+    if common_members.any?
+      @network_members |= other_network.network_members # |= simulates "union", now the @network_members would have all unique members that are in either net
+      @@all_networks.delete(other_network)  # deleting the old net, now we have a new one with its info and new info
+      @@total_networks -= 1 # decrease in 1 the total number of nets, we have just merge 2 into 1
+    end
+  end
+
+
+
+  def create_and_merge
+
+    nets_with_common_members = @@all_networks.select do |existing_net|  # iterate through all existing nets
+      existing_net.network_members.any? { |member| self.network_members.include?(member)}  # check if there is any net with common members with the just created net
+    end
+      # it is possible that the new net has common members with more than 1 net, we should merge them all in that case
+
+    if nets_with_common_members.size > 1
+      nets_with_common_members.each do |common_net|  
+        self.merge_with(common_net) unless common_net == self   # if would match to itself, we need to skip because if not we will be deleting the own net we are creating
+      end
+    end
+
+    return(nets_with_common_members)
   end
 
 end

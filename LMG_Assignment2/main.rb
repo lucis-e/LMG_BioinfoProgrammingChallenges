@@ -39,10 +39,17 @@ Members.all_coexpresed_members.each do |gene|
   puts
   puts "ANALIZANDO NUEVO MIEMBRO con #{gene.gene_id} y #{gene.uniprot_id}"
   
-  network = Networks.create_and_merge(gene, DEPTH)
+  network = Networks.new  # create the new network
+  #gene.set_network=(network)
+  network.add_member(gene)
+  network.recursive_search([gene], DEPTH) # search and assign all the interactors found to this net
+
+  puts network.create_and_merge
+
   puts "Este miembro tiene la red #{network} con #{network.network_members.length} miembros"
+
   #network.network_members.each do |element|
-  #  puts element.uniprot_id
+  #  puts element.uniprot_ids
   #end
 end
   puts
@@ -50,5 +57,11 @@ end
   puts "FINAL REPORT"
   puts "--------------------------------------------------"
   puts "Total number of nets: #{Networks.get_number_of_nets}"
+ puts Networks.all_networks
+
   
+
+# creo que funciona guay
+# según mis calculos jejejeje
+# debería estaaar funsionando muajajajaj
 

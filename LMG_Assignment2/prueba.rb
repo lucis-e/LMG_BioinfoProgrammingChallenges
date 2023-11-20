@@ -1,29 +1,10 @@
-def recursive_search(depth, array_)
 
-    if depth < 1
-        return "end" 
-    else
-        puts "depth = #{depth}"
-        array_.each do |element|
-            puts element 
-            modified_array = array_.map{|element| element + 1}
-            puts "new array #{modified_array}"
-        return recursive_search(depth-1, modified_array)
-        end 
-    end
 
+prueba = [[0,1], [0,0]].select do |lista|
+
+
+    lista.any? { |member| [9, 7, 3].include?(member)}  # check if there is any net with common members with the just created net
 end
 
-list_of_nums=[4]
+puts prueba.empty?
 
-
-def recursive_search(depth, list_of_members)
-
-    case depth
-    when 0
-        break
-
-    else
-        puts "#{depth}"
-  
-  end
