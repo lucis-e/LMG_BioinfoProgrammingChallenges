@@ -1,4 +1,5 @@
 require 'json'
+#CAMBIOS: times_searched y register_search ya no se necesita, eliminarlos. En find_interactors, poner !interactor.nil? como tercer comprobante &&
 
 
 class Members
@@ -10,7 +11,6 @@ class Members
 
     def initialize( uniprot_id: "IDXXX" )
         @uniprot_id = uniprot_id
-        @times_searched = 0
         @direct_interactors = []
         @@all_members[@uniprot_id] = self
     end
@@ -23,19 +23,11 @@ class Members
         @gene_id
     end
 
-   # def set_network=(network)
-   #     @network = network
-   # end
-    
-   # def get_network
-   #     @network
-   # end
-
     def self.all_coexpresed_members
         @@coexpresed_members
     end
 
-    def all_members
+    def self.all_members
         @@all_members
     end
     
@@ -69,9 +61,22 @@ class Members
         end
         response.body.each_line do |line|
             values = line.chomp.split("\t")
+
+            # Filtering by confidence score
+            instact_miscore = extract_xref(values[14]).to_f   # get confidence score 
+            next if instact_miscore < 0.4 # filter, exclude those that have a confidence score lower than 0.35
+            
+            # Filtering by quality of/trust in tecnology
+            interaction_detection_method = extract_xref(values[6])  # get confidence score 
+            #next if interaction_detection_method == "MI:0018"   # exclude two hybrid, not very trustworthy, a lot of false positives
+
+            # Filtering by type of interaction
+            type_int = extract_xref(values[11])  # get type of interaction
+            next if type_int != "MI:0915" # if it is not physical association then filter, reserved for purified molecules, not cell extracts or other complex sambples (100% no other participants are bridging the interaction)
+            
             [0,1].each do |id|
                 interactor = extract_xref(values[id])
-                if !interactor.include?(@uniprot_id) && interactor.match(/[OPQ][0-9][A-Z0-9]{3}[0-9]$/)   # check if it not empty or the query interactor
+                if !interactor.nil? && !interactor.include?(@uniprot_id) && interactor.match(/[OPQ][0-9][A-Z0-9]{3}[0-9]$/)   # check if it not empty or the query interactor
                     if @@all_members.key?(interactor) # Si ya existe
                         @direct_interactors << @@all_members[interactor]
                     else
@@ -81,10 +86,6 @@ class Members
                 end
             end
         end
-    end
-
-    def register_search
-        @times_searched += 1
     end
 
     def eql?(other) 

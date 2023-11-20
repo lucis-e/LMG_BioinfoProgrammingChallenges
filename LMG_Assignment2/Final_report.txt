@@ -1,0 +1,79 @@
+This code was created by Miguel La Iglesia Mirones and Lucía Muñoz Gil
+Bioinformatics Programming Challenges Course at MSc Computational Biology (UPM)
+November 2023
+-----------------------------------------------------------------------------------
+
+Protein - protein interaction networks (interactome) final report for genes detailed at ArabidopsisSubNetwork_GeneList.txt file
+
+GLOBAL REPORT FOR ALL PROTEIN-PROTEIN INTERACTION NETWORKS
+Total number of nodes: 1135
+Number of nets: 9
+
+FEATURES OF EVERY INTERACTION NETWORK
+
+Network ID 1 (#<Networks:0x000055d7451e9b60>):
+   Number of members: 2
+   Genes from file part of this network:
+     Gene ID: AT5g04140, Uniprot ID for coded protein: Q9ZNZ7
+
+Network ID 2 (#<Networks:0x000055d744b7cae8>):
+   Number of members: 3
+   Genes from file part of this network:
+     Gene ID: AT5g05690, Uniprot ID for coded protein: Q42569
+
+Network ID 3 (#<Networks:0x000055d7451912d0>):
+   Number of members: 2
+   Genes from file part of this network:
+     Gene ID: AT4g19170, Uniprot ID for coded protein: O49675
+
+Network ID 4 (#<Networks:0x000055d7452f9af0>):
+   Number of members: 6
+   Genes from file part of this network:
+     Gene ID: AT1g54040, Uniprot ID for coded protein: Q8RY71
+
+Network ID 5 (#<Networks:0x000055d745141b68>):
+   Number of members: 12
+   Genes from file part of this network:
+     Gene ID: AT3g45780, Uniprot ID for coded protein: O48963
+
+Network ID 6 (#<Networks:0x000055d7452d0bc8>):
+   Number of members: 2
+   Genes from file part of this network:
+     Gene ID: AT2g33830, Uniprot ID for coded protein: P93017
+
+Network ID 7 (#<Networks:0x000055d744ff47d8>):
+   Number of members: 11
+   Genes from file part of this network:
+     Gene ID: AT3g61260, Uniprot ID for coded protein: Q9M2D8
+
+Network ID 8 (#<Networks:0x000055d7452193d8>):
+   Number of members: 2
+   Genes from file part of this network:
+     Gene ID: AT4g39710, Uniprot ID for coded protein: Q9SCY3
+
+Network ID 9 (#<Networks:0x000055d744e08e10>):
+   Number of members: 958
+   Genes from file part of this network:
+     Gene ID: AT1g14280, Uniprot ID for coded protein: Q9M9T4
+     Gene ID: AT4g02770, Uniprot ID for coded protein: Q9S7H1
+     Gene ID: AT1g76080, Uniprot ID for coded protein: Q9SGS4
+     Gene ID: AT1g37130, Uniprot ID for coded protein: P11035
+     Gene ID: AT3g62550, Uniprot ID for coded protein: Q5CCK4
+     Gene ID: AT4g22890, Uniprot ID for coded protein: Q8H112
+     Gene ID: AT4g09650, Uniprot ID for coded protein: Q9SSS9
+     Gene ID: AT1g03130, Uniprot ID for coded protein: Q9SA56
+     Gene ID: AT4g37610, Uniprot ID for coded protein: Q6EJ98
+     Gene ID: AT3g48360, Uniprot ID for coded protein: Q94BN0
+     Gene ID: AT3g50820, Uniprot ID for coded protein: Q9S841
+     Gene ID: AT2g39730, Uniprot ID for coded protein: P10896
+     Gene ID: AT3g55800, Uniprot ID for coded protein: P46283
+     Gene ID: AT3g62410, Uniprot ID for coded protein: Q9LZP9
+     Gene ID: AT5g35630, Uniprot ID for coded protein: Q43127
+     Gene ID: AT3g01500, Uniprot ID for coded protein: P27140
+     Gene ID: AT5g14740, Uniprot ID for coded protein: P42737
+     Gene ID: AT1g71030, Uniprot ID for coded protein: Q9C9A5
+     Gene ID: AT3g21870, Uniprot ID for coded protein: Q9LJ45
+     Gene ID: AT5g17300, Uniprot ID for coded protein: F4KGY6
+     Gene ID: AT5g15850, Uniprot ID for coded protein: O50055
+     Gene ID: AT4g17460, Uniprot ID for coded protein: P46600
+     Gene ID: AT2g46340, Uniprot ID for coded protein: Q9SYX2

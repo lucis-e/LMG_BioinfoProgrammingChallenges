@@ -11,6 +11,11 @@ class Networks
     @@all_networks << self # más optimo un array
   end
 
+  def self.all_networks
+    return @@all_networks
+  end
+
+
   def add_member(net_member)
     @network_members << net_member
   end
@@ -19,8 +24,12 @@ class Networks
     @@total_networks
   end
 
-  def self.all_networks
-    @@all_networks
+  def only_one_member?
+    @network_members.length < 2
+  end
+
+  def self.reduce_networks
+    @@all_networks = @@all_networks.select { |network| !network.only_one_member? }
   end
 
 
@@ -49,12 +58,13 @@ class Networks
     recursive_search(list_of_interactors, depth - 1)
   end
 
+
   def merge_with(other_network)
 
     common_members = @network_members & other_network.network_members # check if there are any common members (this is actually already checked, maybe not necessary)
 
     if common_members.any?
-      @network_members |= other_network.network_members # |= simulates "union", now the @network_members would have all unique members that are in either net
+      @network_members |= other_network.network_members # |= simulates "union", now the @network_members would have all unique members from both nets
       @@all_networks.delete(other_network)  # deleting the old net, now we have a new one with its info and new info
       @@total_networks -= 1 # decrease in 1 the total number of nets, we have just merge 2 into 1
     end
@@ -63,10 +73,10 @@ class Networks
 
 
   def create_and_merge
-
-    nets_with_common_members = @@all_networks.select do |existing_net|  # iterate through all existing nets
+                                                                        # Lu hace lo de ir absorbiendo redes igual q yo, por eso el select te selecciona aquellso que cumplen la condiicon de abajoo
+    nets_with_common_members = @@all_networks.select do |existing_net|  # iterate through all existing nets y selecciona aquellos que cumplan esa condición
       existing_net.network_members.any? { |member| self.network_members.include?(member)}  # check if there is any net with common members with the just created net
-    end
+    end # El any? mira si alguno de los elementos del @network_members cumple la condición de {"se incluye en la red del objeto que llama a la función"}
       # it is possible that the new net has common members with more than 1 net, we should merge them all in that case
 
     if nets_with_common_members.size > 1
