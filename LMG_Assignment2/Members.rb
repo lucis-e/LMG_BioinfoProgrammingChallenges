@@ -23,13 +23,13 @@ class Members
         @gene_id
     end
 
-    def set_network=(network)
-        @network = network
-    end
+   # def set_network=(network)
+   #     @network = network
+   # end
     
-    def get_network
-        @network
-    end
+   # def get_network
+   #     @network
+   # end
 
     def self.all_coexpresed_members
         @@coexpresed_members
@@ -83,19 +83,6 @@ class Members
         end
     end
 
-
-    def add_to_network 
-        if @direct_interactors.empty? || @direct_interactors.is_a?(String)
-            return 1
-        end
-        @direct_interactors.each do |interactor|
-            unless self.get_network.network_members.key?(interactor.uniprot_id)
-                interactor.set_network=(self.get_network)
-                self.get_network.add_member(interactor)
-            end
-        end
-    end
-
     def register_search
         @times_searched += 1
     end
@@ -107,6 +94,6 @@ class Members
     def hash    
         @uniprot_id.hash
     end
-        
+
 
 end

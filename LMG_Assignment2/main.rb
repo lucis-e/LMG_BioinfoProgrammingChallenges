@@ -22,8 +22,6 @@ end
 
 #-----------------------------------------------------------------------------
 
-
-
 Members.read_from_file('ArabidopsisSubNetwork_GeneList.txt')
 
 
@@ -34,33 +32,23 @@ TAB25_FORMAT = 'tab25'
 DEPTH = 2
 
 
-def recursive_search(member, network, depth)
 
-  if depth < 1
-    return "End of search"
-  else
-    protein_list.map{|element| element.find_interactors if member.direct_interactors.empty?}  # seach only when we have not already searched
-    member.add_to_network
-    if member.direct_interators.empty? || member.direct_interactors.is_a?(String)
-      next  # go for next element in the array
-    end 
-    return recursive_search(member.direct_interactors, network, depth = depth + 1)
-  end
-  
-
-
-end
 
 Members.all_coexpresed_members.each do |gene|
   puts
   puts
   puts "ANALIZANDO NUEVO MIEMBRO con #{gene.gene_id} y #{gene.uniprot_id}"
-  network = Networks.new()
-  gene.set_network=(network)
-  network.add_member(gene)
-  recursive_search(gene, network, depth=1)
-  puts "Este miembro tiene la red #{network} con miembros:"
-  network.network_members.each do |_key, value|
-    puts value.uniprot_id
-  end
+  
+  network = Networks.create_and_merge(gene, DEPTH)
+  puts "Este miembro tiene la red #{network} con #{network.network_members.length} miembros"
+  #network.network_members.each do |element|
+  #  puts element.uniprot_id
+  #end
 end
+  puts
+  puts
+  puts "FINAL REPORT"
+  puts "--------------------------------------------------"
+  puts "Total number of nets: #{Networks.get_number_of_nets}"
+  
+
