@@ -1,13 +1,16 @@
 class Networks
 
-  attr_accessor :network_members, :number_of_networks
+  attr_accessor :network_members, :number_of_networks, :network_GOs, :network_KEGGs
 
   @@total_networks = 0
   @@all_networks = []
+  
 
   def initialize
     @network_members = []
     @@total_networks += 1
+    @network_GOs = {}
+    @network_KEGGs = {}
     @@all_networks << self # más optimo un array
   end
 
@@ -18,6 +21,8 @@ class Networks
 
   def add_member(net_member)
     @network_members << net_member
+    @network_GOs.merge!(net_member.go_IDs_terms)
+    @network_KEGGs.merge!(net_member.kegg_ID_pathway)
   end
 
   def self.get_number_of_nets
@@ -65,6 +70,8 @@ class Networks
 
     if common_members.any?
       @network_members |= other_network.network_members # |= simulates "union", now the @network_members would have all unique members from both nets
+      @network_GOs |= other_network.network_GOs
+      @network_KEGGs |= other_network.network_KEGGs
       @@all_networks.delete(other_network)  # deleting the old net, now we have a new one with its info and new info
       @@total_networks -= 1 # decrease in 1 the total number of nets, we have just merge 2 into 1
     end
@@ -72,7 +79,7 @@ class Networks
 
 
 
-  def create_and_merge
+  def merge_with_common
                                                                         # Lu hace lo de ir absorbiendo redes igual q yo, por eso el select te selecciona aquellso que cumplen la condiicon de abajoo
     nets_with_common_members = @@all_networks.select do |existing_net|  # iterate through all existing nets y selecciona aquellos que cumplan esa condición
       existing_net.network_members.any? { |member| self.network_members.include?(member)}  # check if there is any net with common members with the just created net
@@ -85,7 +92,6 @@ class Networks
       end
     end
 
-    return(nets_with_common_members)
   end
 
 end

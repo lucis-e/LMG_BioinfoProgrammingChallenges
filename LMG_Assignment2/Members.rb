@@ -1,10 +1,7 @@
-require 'json'
-#CAMBIOS: times_searched y register_search ya no se necesita, eliminarlos. En find_interactors, poner !interactor.nil? como tercer comprobante &&
-
 
 class Members
 
-    attr_accessor :uniprot_id, :times_searched, :direct_interactors
+    attr_accessor :uniprot_id, :direct_interactors
 
     @@coexpresed_members= []
     @@all_members = Hash.new
@@ -35,16 +32,14 @@ class Members
         coexpressed_file = File.open(filename, 'r')
         coexpressed_file.readlines.each do |line|
             locus_name=line.chomp
-            togo_address = "http://togows.dbcls.jp/entry/uniprot/#{locus_name}/accessions.json"
-            togo_response = rest_api_request(togo_address)  # search in TOGO db the uniprot id for each locus name
-            result = JSON.parse(togo_response.body)
+            result = togo_search("uniprot", locus_name,"/accessions")
             if result.is_a?(Array) && result.any?
                 uniprot_id = result.first.first   
             else
                 puts "No UniProt entry found for locus #{locus_name}. Please remove this entry from gene list"
                 next
             end
-            member = self.new(uniprot_id: uniprot_id)   # create new instance of this class for each gene of the list with uniprotid
+            member = AnnotatedMembers.new(uniprot_id: uniprot_id)   # create new instance of this class for each gene of the list with uniprotid
             member.gene_id=(locus_name) # and genename
             @@coexpresed_members << member
         end
@@ -80,7 +75,7 @@ class Members
                     if @@all_members.key?(interactor) # Si ya existe
                         @direct_interactors << @@all_members[interactor]
                     else
-                        interactor = self.class.new(uniprot_id: interactor) 
+                        interactor = AnnotatedMembers.new(uniprot_id: interactor) 
                         @direct_interactors << interactor
                     end 
                 end

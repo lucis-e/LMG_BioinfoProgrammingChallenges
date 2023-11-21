@@ -1,79 +1,324 @@
 This code was created by Miguel La Iglesia Mirones and Lucía Muñoz Gil
 Bioinformatics Programming Challenges Course at MSc Computational Biology (UPM)
 November 2023
------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------
 
-Protein - protein interaction networks (interactome) final report for genes detailed at ArabidopsisSubNetwork_GeneList.txt file
+Protein - protein interaction networks (interactome) final report for genes detailed
+at ArabidopsisSubNetwork_GeneList.txt file
+
+---------------------------------------------------------------------------------------
 
 GLOBAL REPORT FOR ALL PROTEIN-PROTEIN INTERACTION NETWORKS
-Total number of nodes: 1135
-Number of nets: 9
+
+Total number of nodes: 180
+Number of nets: 1
+Genes from list not included in any network: 
+
+---------------------------------------------------------------------------------------
 
 FEATURES OF EVERY INTERACTION NETWORK
 
-Network ID 1 (#<Networks:0x000055d7451e9b60>):
-   Number of members: 2
-   Genes from file part of this network:
-     Gene ID: AT5g04140, Uniprot ID for coded protein: Q9ZNZ7
+Network ID 1 (#<Networks:0x0000564bbf86e7a8>):
+  Number of members: 178
+  Genes from file part of this network:
+    Gene ID: AT4g09650, Uniprot ID for coded protein: Q9SSS9
 
-Network ID 2 (#<Networks:0x000055d744b7cae8>):
-   Number of members: 3
-   Genes from file part of this network:
-     Gene ID: AT5g05690, Uniprot ID for coded protein: Q42569
+  KEGG annotations in network 1:
+    KEGG ID: ath00190   Pathway: Oxidative phosphorylation
+    KEGG ID: ath00195   Pathway: Photosynthesis
+    KEGG ID: ath01100   Pathway: Metabolic pathways
+    KEGG ID: ath04016   Pathway: MAPK signaling pathway - plant
+    KEGG ID: ath04075   Pathway: Plant hormone signal transduction
+    KEGG ID: ath04626   Pathway: Plant-pathogen interaction
+    KEGG ID: ath04120   Pathway: Ubiquitin mediated proteolysis
+    KEGG ID: ath03082   Pathway: ATP-dependent chromatin remodeling
+    KEGG ID: ath03050   Pathway: Proteasome
+    KEGG ID: ath03013   Pathway: Nucleocytoplasmic transport
+    KEGG ID: ath04136   Pathway: Autophagy - other
+    KEGG ID: ath03040   Pathway: Spliceosome
+    KEGG ID: ath00630   Pathway: Glyoxylate and dicarboxylate metabolism
+    KEGG ID: ath00710   Pathway: Carbon fixation in photosynthetic organisms
+    KEGG ID: ath01110   Pathway: Biosynthesis of secondary metabolites
+    KEGG ID: ath01200   Pathway: Carbon metabolism
+    KEGG ID: ath03015   Pathway: mRNA surveillance pathway
+    KEGG ID: ath04712   Pathway: Circadian rhythm - plant
+    KEGG ID: ath03018   Pathway: RNA degradation
+    KEGG ID: ath00514   Pathway: Other types of O-glycan biosynthesis
+    KEGG ID: ath03083   Pathway: Polycomb repressive complex
+    KEGG ID: ath03020   Pathway: RNA polymerase
+    KEGG ID: ath03420   Pathway: Nucleotide excision repair
+    KEGG ID: ath00910   Pathway: Nitrogen metabolism
+    KEGG ID: ath00904   Pathway: Diterpenoid biosynthesis
+    KEGG ID: ath04144   Pathway: Endocytosis
+    KEGG ID: ath04146   Pathway: Peroxisome
+    KEGG ID: ath00010   Pathway: Glycolysis / Gluconeogenesis
+    KEGG ID: ath00020   Pathway: Citrate cycle (TCA cycle)
+    KEGG ID: ath00620   Pathway: Pyruvate metabolism
+    KEGG ID: ath00785   Pathway: Lipoic acid metabolism
+    KEGG ID: ath01210   Pathway: 2-Oxocarboxylic acid metabolism
+    KEGG ID: ath04145   Pathway: Phagosome
+    KEGG ID: ath03250   Pathway: Viral life cycle - HIV-1
 
-Network ID 3 (#<Networks:0x000055d7451912d0>):
-   Number of members: 2
-   Genes from file part of this network:
-     Gene ID: AT4g19170, Uniprot ID for coded protein: O49675
-
-Network ID 4 (#<Networks:0x000055d7452f9af0>):
-   Number of members: 6
-   Genes from file part of this network:
-     Gene ID: AT1g54040, Uniprot ID for coded protein: Q8RY71
-
-Network ID 5 (#<Networks:0x000055d745141b68>):
-   Number of members: 12
-   Genes from file part of this network:
-     Gene ID: AT3g45780, Uniprot ID for coded protein: O48963
-
-Network ID 6 (#<Networks:0x000055d7452d0bc8>):
-   Number of members: 2
-   Genes from file part of this network:
-     Gene ID: AT2g33830, Uniprot ID for coded protein: P93017
-
-Network ID 7 (#<Networks:0x000055d744ff47d8>):
-   Number of members: 11
-   Genes from file part of this network:
-     Gene ID: AT3g61260, Uniprot ID for coded protein: Q9M2D8
-
-Network ID 8 (#<Networks:0x000055d7452193d8>):
-   Number of members: 2
-   Genes from file part of this network:
-     Gene ID: AT4g39710, Uniprot ID for coded protein: Q9SCY3
-
-Network ID 9 (#<Networks:0x000055d744e08e10>):
-   Number of members: 958
-   Genes from file part of this network:
-     Gene ID: AT1g14280, Uniprot ID for coded protein: Q9M9T4
-     Gene ID: AT4g02770, Uniprot ID for coded protein: Q9S7H1
-     Gene ID: AT1g76080, Uniprot ID for coded protein: Q9SGS4
-     Gene ID: AT1g37130, Uniprot ID for coded protein: P11035
-     Gene ID: AT3g62550, Uniprot ID for coded protein: Q5CCK4
-     Gene ID: AT4g22890, Uniprot ID for coded protein: Q8H112
-     Gene ID: AT4g09650, Uniprot ID for coded protein: Q9SSS9
-     Gene ID: AT1g03130, Uniprot ID for coded protein: Q9SA56
-     Gene ID: AT4g37610, Uniprot ID for coded protein: Q6EJ98
-     Gene ID: AT3g48360, Uniprot ID for coded protein: Q94BN0
-     Gene ID: AT3g50820, Uniprot ID for coded protein: Q9S841
-     Gene ID: AT2g39730, Uniprot ID for coded protein: P10896
-     Gene ID: AT3g55800, Uniprot ID for coded protein: P46283
-     Gene ID: AT3g62410, Uniprot ID for coded protein: Q9LZP9
-     Gene ID: AT5g35630, Uniprot ID for coded protein: Q43127
-     Gene ID: AT3g01500, Uniprot ID for coded protein: P27140
-     Gene ID: AT5g14740, Uniprot ID for coded protein: P42737
-     Gene ID: AT1g71030, Uniprot ID for coded protein: Q9C9A5
-     Gene ID: AT3g21870, Uniprot ID for coded protein: Q9LJ45
-     Gene ID: AT5g17300, Uniprot ID for coded protein: F4KGY6
-     Gene ID: AT5g15850, Uniprot ID for coded protein: O50055
-     Gene ID: AT4g17460, Uniprot ID for coded protein: P46600
-     Gene ID: AT2g46340, Uniprot ID for coded protein: Q9SYX2
+  GO annotations in network 1:
+    GO ID: GO:0015979   Term: photosynthesis
+    GO ID: GO:0009773   Term: photosynthetic electron transport in photosystem I
+    GO ID: GO:0009772   Term: photosynthetic electron transport in photosystem II
+    GO ID: GO:0009409   Term: response to cold
+    GO ID: GO:0019760   Term: glucosinolate metabolic process
+    GO ID: GO:1901001   Term: negative regulation of response to salt stress
+    GO ID: GO:0010929   Term: positive regulation of auxin mediated signaling pathway
+    GO ID: GO:0006355   Term: regulation of DNA-templated transcription
+    GO ID: GO:0009738   Term: abscisic acid-activated signaling pathway
+    GO ID: GO:0042742   Term: defense response to bacterium
+    GO ID: GO:0050832   Term: defense response to fungus
+    GO ID: GO:1900150   Term: regulation of defense response to fungus
+    GO ID: GO:2000022   Term: regulation of jasmonic acid mediated signaling pathway
+    GO ID: GO:2000031   Term: regulation of salicylic acid mediated signaling pathway
+    GO ID: GO:0009737   Term: response to abscisic acid
+    GO ID: GO:0009408   Term: response to heat
+    GO ID: GO:0009753   Term: response to jasmonic acid
+    GO ID: GO:0009751   Term: response to salicylic acid
+    GO ID: GO:0009651   Term: response to salt stress
+    GO ID: GO:0009414   Term: response to water deprivation
+    GO ID: GO:0098542   Term: defense response to other organism
+    GO ID: GO:0010227   Term: floral organ abscission
+    GO ID: GO:0010229   Term: inflorescence development
+    GO ID: GO:0016310   Term: phosphorylation
+    GO ID: GO:0009626   Term: plant-type hypersensitive response
+    GO ID: GO:0009875   Term: pollen-pistil interaction
+    GO ID: GO:0045454   Term: cell redox homeostasis
+    GO ID: GO:0043085   Term: positive regulation of catalytic activity
+    GO ID: GO:0009642   Term: response to light intensity
+    GO ID: GO:1902584   Term: positive regulation of response to water deprivation
+    GO ID: GO:0016567   Term: protein ubiquitination
+    GO ID: GO:2000785   Term: regulation of autophagosome assembly
+    GO ID: GO:0006511   Term: ubiquitin-dependent protein catabolic process
+    GO ID: GO:0006887   Term: exocytosis
+    GO ID: GO:0015031   Term: protein transport
+    GO ID: GO:0009788   Term: negative regulation of abscisic acid-activated signaling pathway
+    GO ID: GO:0010581   Term: regulation of starch biosynthetic process
+    GO ID: GO:0007165   Term: signal transduction
+    GO ID: GO:0009557   Term: antipodal cell differentiation
+    GO ID: GO:0009736   Term: cytokinin-activated signaling pathway
+    GO ID: GO:0009560   Term: embryo sac egg cell differentiation
+    GO ID: GO:0000160   Term: phosphorelay signal transduction system
+    GO ID: GO:0006952   Term: defense response
+    GO ID: GO:0009615   Term: response to virus
+    GO ID: GO:0030154   Term: cell differentiation
+    GO ID: GO:0006338   Term: chromatin remodeling
+    GO ID: GO:0009908   Term: flower development
+    GO ID: GO:0048638   Term: regulation of developmental growth
+    GO ID: GO:0009909   Term: regulation of flower development
+    GO ID: GO:0052542   Term: defense response by callose deposition
+    GO ID: GO:0006955   Term: immune response
+    GO ID: GO:1903553   Term: positive regulation of extracellular exosome assembly
+    GO ID: GO:1903533   Term: regulation of protein targeting
+    GO ID: GO:0010498   Term: proteasomal protein catabolic process
+    GO ID: GO:0071456   Term: cellular response to hypoxia
+    GO ID: GO:0072593   Term: reactive oxygen species metabolic process
+    GO ID: GO:0045892   Term: negative regulation of DNA-templated transcription
+    GO ID: GO:0000122   Term: negative regulation of transcription by RNA polymerase II
+    GO ID: GO:0006606   Term: protein import into nucleus
+    GO ID: GO:0009567   Term: double fertilization forming a zygote and endosperm
+    GO ID: GO:0009553   Term: embryo sac development
+    GO ID: GO:0080173   Term: male-female gamete recognition during double fertilization forming a zygote and endosperm
+    GO ID: GO:0001933   Term: negative regulation of protein phosphorylation
+    GO ID: GO:0031542   Term: positive regulation of anthocyanin biosynthetic process
+    GO ID: GO:0010218   Term: response to far red light
+    GO ID: GO:0009644   Term: response to high light intensity
+    GO ID: GO:0009744   Term: response to sucrose
+    GO ID: GO:0006397   Term: mRNA processing
+    GO ID: GO:0008380   Term: RNA splicing
+    GO ID: GO:0045926   Term: negative regulation of growth
+    GO ID: GO:0006470   Term: protein dephosphorylation
+    GO ID: GO:1904526   Term: regulation of microtubule binding
+    GO ID: GO:0009561   Term: megagametogenesis
+    GO ID: GO:0006364   Term: rRNA processing
+    GO ID: GO:0009789   Term: positive regulation of abscisic acid-activated signaling pathway
+    GO ID: GO:0051301   Term: cell division
+    GO ID: GO:0042023   Term: DNA endoreduplication
+    GO ID: GO:0009960   Term: endosperm development
+    GO ID: GO:1904667   Term: negative regulation of ubiquitin protein ligase activity
+    GO ID: GO:1900426   Term: positive regulation of defense response to bacterium
+    GO ID: GO:0051783   Term: regulation of nuclear division
+    GO ID: GO:0010224   Term: response to UV-B
+    GO ID: GO:0010091   Term: trichome branching
+    GO ID: GO:0006468   Term: protein phosphorylation
+    GO ID: GO:0051592   Term: response to calcium ion
+    GO ID: GO:0009268   Term: response to pH
+    GO ID: GO:0006325   Term: chromatin organization
+    GO ID: GO:0006281   Term: DNA repair
+    GO ID: GO:0010468   Term: regulation of gene expression
+    GO ID: GO:2000024   Term: regulation of leaf development
+    GO ID: GO:0048364   Term: root development
+    GO ID: GO:0009793   Term: embryo development ending in seed dormancy
+    GO ID: GO:0009555   Term: pollen development
+    GO ID: GO:0048868   Term: pollen tube development
+    GO ID: GO:0048571   Term: long-day photoperiodism
+    GO ID: GO:1900088   Term: regulation of inositol biosynthetic process
+    GO ID: GO:1900091   Term: regulation of raffinose biosynthetic process
+    GO ID: GO:0031929   Term: TOR signaling
+    GO ID: GO:0009617   Term: response to bacterium
+    GO ID: GO:0009620   Term: response to fungus
+    GO ID: GO:0002237   Term: response to molecule of bacterial origin
+    GO ID: GO:0009785   Term: blue light signaling pathway
+    GO ID: GO:0009640   Term: photomorphogenesis
+    GO ID: GO:0010017   Term: red or far-red light signaling pathway
+    GO ID: GO:0010447   Term: response to acidic pH
+    GO ID: GO:0010044   Term: response to aluminum ion
+    GO ID: GO:0000398   Term: mRNA splicing, via spliceosome
+    GO ID: GO:0016554   Term: cytidine to uridine editing
+    GO ID: GO:0002103   Term: endonucleolytic cleavage of tetracistronic rRNA transcript (SSU-rRNA, LSU-rRNA, 4.5S-rRNA, 5S-rRNA)
+    GO ID: GO:0009657   Term: plastid organization
+    GO ID: GO:0009734   Term: auxin-activated signaling pathway
+    GO ID: GO:0006412   Term: translation
+    GO ID: GO:0042255   Term: ribosome assembly
+    GO ID: GO:0051365   Term: cellular response to potassium ion starvation
+    GO ID: GO:0055075   Term: potassium ion homeostasis
+    GO ID: GO:0043266   Term: regulation of potassium ion transport
+    GO ID: GO:0010555   Term: response to mannitol
+    GO ID: GO:0009611   Term: response to wounding
+    GO ID: GO:0140547   Term: acquisition of seed longevity
+    GO ID: GO:0009853   Term: photorespiration
+    GO ID: GO:0019253   Term: reductive pentose-phosphate cycle
+    GO ID: GO:0110102   Term: ribulose bisphosphate carboxylase complex assembly
+    GO ID: GO:0051028   Term: mRNA transport
+    GO ID: GO:0000184   Term: nuclear-transcribed mRNA catabolic process, nonsense-mediated decay
+    GO ID: GO:0010183   Term: pollen tube guidance
+    GO ID: GO:0010628   Term: positive regulation of gene expression
+    GO ID: GO:0006417   Term: regulation of translation
+    GO ID: GO:0071569   Term: protein ufmylation
+    GO ID: GO:0046777   Term: protein autophosphorylation
+    GO ID: GO:0009637   Term: response to blue light
+    GO ID: GO:0043488   Term: regulation of mRNA stability
+    GO ID: GO:0060918   Term: auxin transport
+    GO ID: GO:0008356   Term: asymmetric cell division
+    GO ID: GO:0010338   Term: leaf formation
+    GO ID: GO:0009965   Term: leaf morphogenesis
+    GO ID: GO:0009944   Term: polarity specification of adaxial/abaxial axis
+    GO ID: GO:0009946   Term: proximal/distal axis specification
+    GO ID: GO:0045088   Term: regulation of innate immune response
+    GO ID: GO:0043622   Term: cortical microtubule organization
+    GO ID: GO:0009658   Term: chloroplast organization
+    GO ID: GO:0042793   Term: plastid transcription
+    GO ID: GO:0045893   Term: positive regulation of DNA-templated transcription
+    GO ID: GO:0009735   Term: response to cytokinin
+    GO ID: GO:0009416   Term: response to light stimulus
+    GO ID: GO:2000073   Term: regulation of cytokinesis, site selection
+    GO ID: GO:0071472   Term: cellular response to salt stress
+    GO ID: GO:0009873   Term: ethylene-activated signaling pathway
+    GO ID: GO:0009733   Term: response to auxin
+    GO ID: GO:0009704   Term: de-etiolation
+    GO ID: GO:0009630   Term: gravitropism
+    GO ID: GO:0048367   Term: shoot system development
+    GO ID: GO:0071555   Term: cell wall organization
+    GO ID: GO:2000652   Term: regulation of secondary cell wall biogenesis
+    GO ID: GO:0010105   Term: negative regulation of ethylene-activated signaling pathway
+    GO ID: GO:0009723   Term: response to ethylene
+    GO ID: GO:0031507   Term: heterochromatin formation
+    GO ID: GO:0009825   Term: multidimensional cell growth
+    GO ID: GO:0009910   Term: negative regulation of flower development
+    GO ID: GO:0045814   Term: negative regulation of gene expression, epigenetic
+    GO ID: GO:0009648   Term: photoperiodism
+    GO ID: GO:0048573   Term: photoperiodism, flowering
+    GO ID: GO:0010016   Term: shoot system morphogenesis
+    GO ID: GO:0010048   Term: vernalization response
+    GO ID: GO:0042538   Term: hyperosmotic salinity response
+    GO ID: GO:0006814   Term: sodium ion transport
+    GO ID: GO:0007623   Term: circadian rhythm
+    GO ID: GO:0048578   Term: positive regulation of long-day photoperiodism, flowering
+    GO ID: GO:0009585   Term: red, far-red light phototransduction
+    GO ID: GO:0042752   Term: regulation of circadian rhythm
+    GO ID: GO:0042542   Term: response to hydrogen peroxide
+    GO ID: GO:0010378   Term: temperature compensation of the circadian clock
+    GO ID: GO:1902039   Term: negative regulation of seed dormancy process
+    GO ID: GO:0009939   Term: positive regulation of gibberellic acid mediated signaling pathway
+    GO ID: GO:0010030   Term: positive regulation of seed germination
+    GO ID: GO:0048838   Term: release of seed from dormancy
+    GO ID: GO:2000028   Term: regulation of photoperiodism, flowering
+    GO ID: GO:0009646   Term: response to absence of light
+    GO ID: GO:0010114   Term: response to red light
+    GO ID: GO:0048511   Term: rhythmic process
+    GO ID: GO:0010228   Term: vegetative to reproductive phase transition of meristem
+    GO ID: GO:0009943   Term: adaxial/abaxial axis specification
+    GO ID: GO:0009855   Term: determination of bilateral symmetry
+    GO ID: GO:0009880   Term: embryonic pattern specification
+    GO ID: GO:0080060   Term: integument development
+    GO ID: GO:0010014   Term: meristem initiation
+    GO ID: GO:0010072   Term: primary shoot apical meristem specification
+    GO ID: GO:0009955   Term: adaxial/abaxial pattern specification
+    GO ID: GO:0048825   Term: cotyledon development
+    GO ID: GO:0048366   Term: leaf development
+    GO ID: GO:0010449   Term: root meristem growth
+    GO ID: GO:0006402   Term: mRNA catabolic process
+    GO ID: GO:0045694   Term: regulation of embryo sac egg cell differentiation
+    GO ID: GO:0042127   Term: regulation of cell population proliferation
+    GO ID: GO:0090610   Term: bundle sheath cell fate specification
+    GO ID: GO:0001714   Term: endodermal cell fate specification
+    GO ID: GO:0010220   Term: positive regulation of vernalization response
+    GO ID: GO:0008285   Term: negative regulation of cell population proliferation
+    GO ID: GO:0046621   Term: negative regulation of organ growth
+    GO ID: GO:0048482   Term: plant ovule morphogenesis
+    GO ID: GO:1900057   Term: positive regulation of leaf senescence
+    GO ID: GO:0032875   Term: regulation of DNA endoreduplication
+    GO ID: GO:0046620   Term: regulation of organ growth
+    GO ID: GO:0080113   Term: regulation of seed growth
+    GO ID: GO:0048317   Term: seed morphogenesis
+    GO ID: GO:0006351   Term: DNA-templated transcription
+    GO ID: GO:0018023   Term: peptidyl-lysine trimethylation
+    GO ID: GO:0006995   Term: cellular response to nitrogen starvation
+    GO ID: GO:0006493   Term: protein O-linked glycosylation
+    GO ID: GO:0098869   Term: cellular oxidant detoxification
+    GO ID: GO:0010438   Term: cellular response to sulfur starvation
+    GO ID: GO:0002229   Term: defense response to oomycetes
+    GO ID: GO:0031347   Term: regulation of defense response
+    GO ID: GO:0047484   Term: regulation of response to osmotic stress
+    GO ID: GO:0045165   Term: cell fate commitment
+    GO ID: GO:0001708   Term: cell fate specification
+    GO ID: GO:0010051   Term: xylem and phloem pattern formation
+    GO ID: GO:0010089   Term: xylem development
+    GO ID: GO:0009867   Term: jasmonic acid mediated signaling pathway
+    GO ID: GO:0080086   Term: stamen filament development
+    GO ID: GO:0010588   Term: cotyledon vascular tissue pattern formation
+    GO ID: GO:0009647   Term: skotomorphogenesis
+    GO ID: GO:0042128   Term: nitrate assimilation
+    GO ID: GO:0006809   Term: nitric oxide biosynthetic process
+    GO ID: GO:0009635   Term: response to herbicide
+    GO ID: GO:0009610   Term: response to symbiotic fungus
+    GO ID: GO:0009740   Term: gibberellic acid mediated signaling pathway
+    GO ID: GO:0009686   Term: gibberellin biosynthetic process
+    GO ID: GO:0009739   Term: response to gibberellin
+    GO ID: GO:0009639   Term: response to red or far red light
+    GO ID: GO:1901371   Term: regulation of leaf morphogenesis
+    GO ID: GO:0009926   Term: auxin polar transport
+    GO ID: GO:0009862   Term: systemic acquired resistance, salicylic acid mediated signaling pathway
+    GO ID: GO:0048440   Term: carpel development
+    GO ID: GO:0050792   Term: regulation of viral process
+    GO ID: GO:0006352   Term: DNA-templated transcription initiation
+    GO ID: GO:0001732   Term: formation of cytoplasmic translation initiation complex
+    GO ID: GO:0002949   Term: tRNA threonylcarbamoyladenosine modification
+    GO ID: GO:0080167   Term: response to karrikin
+    GO ID: GO:0032509   Term: endosome transport via multivesicular body sorting pathway
+    GO ID: GO:0000045   Term: autophagosome assembly
+    GO ID: GO:0043170   Term: macromolecule metabolic process
+    GO ID: GO:0006807   Term: nitrogen compound metabolic process
+    GO ID: GO:0044238   Term: primary metabolic process
+    GO ID: GO:0007049   Term: cell cycle
+    GO ID: GO:0009863   Term: salicylic acid mediated signaling pathway
+    GO ID: GO:0048441   Term: petal development
+    GO ID: GO:0048451   Term: petal formation
+    GO ID: GO:0048448   Term: stamen morphogenesis
+    GO ID: GO:0016558   Term: protein import into peroxisome matrix
+    GO ID: GO:0006625   Term: protein targeting to peroxisome
+    GO ID: GO:0034508   Term: centromere complex assembly
+    GO ID: GO:0006974   Term: DNA damage response
+    GO ID: GO:0006086   Term: acetyl-CoA biosynthetic process from pyruvate
+    GO ID: GO:0006096   Term: glycolytic process
+    GO ID: GO:0051603   Term: proteolysis involved in protein catabolic process
+    GO ID: GO:0048363   Term: mucilage pectin metabolic process
+    GO ID: GO:0051225   Term: spindle assembly
+    GO ID: GO:0006457   Term: protein folding
+    GO ID: GO:0042026   Term: protein refolding
+    GO ID: GO:0050821   Term: protein stabilization
+    GO ID: GO:0043484   Term: regulation of RNA splicing
+    GO ID: GO:0009956   Term: radial pattern formation
