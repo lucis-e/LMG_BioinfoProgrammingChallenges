@@ -3,6 +3,7 @@ class Networks
   attr_accessor :network_members, :number_of_networks, :network_GOs, :network_KEGGs
 
   @@total_networks = 0
+  @@nodes_without_net = 0
   @@all_networks = []
   
 
@@ -18,6 +19,13 @@ class Networks
     return @@all_networks
   end
 
+  def self.get_number_of_nets
+    @@total_networks
+  end
+
+  def self.nodes_without_net
+    @@nodes_without_net
+  end
 
   def add_member(net_member)
     @network_members << net_member
@@ -25,16 +33,16 @@ class Networks
     @network_KEGGs.merge!(net_member.kegg_ID_pathway)
   end
 
-  def self.get_number_of_nets
-    @@total_networks
-  end
-
   def only_one_member?
     @network_members.length < 2
   end
 
   def self.reduce_networks
+    before_reduction = @@all_networks.length
     @@all_networks = @@all_networks.select { |network| !network.only_one_member? }
+
+    @@nodes_without_net = before_reduction - @@all_networks.length
+    @@total_networks -= @@nodes_without_net
   end
 
 

@@ -12,13 +12,13 @@ GLOBAL REPORT FOR ALL PROTEIN-PROTEIN INTERACTION NETWORKS
 
 Total number of nodes: 180
 Number of nets: 1
-Genes from list not included in any network: 
+Genes from list not included in any network: 1
 
 ---------------------------------------------------------------------------------------
 
 FEATURES OF EVERY INTERACTION NETWORK
 
-Network ID 1 (#<Networks:0x0000564bbf86e7a8>):
+Network ID 1 (#<Networks:0x000055edf0384788>):
   Number of members: 178
   Genes from file part of this network:
     Gene ID: AT4g09650, Uniprot ID for coded protein: Q9SSS9

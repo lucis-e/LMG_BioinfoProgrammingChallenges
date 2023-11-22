@@ -88,9 +88,9 @@ File.open(output_report_file, 'w') do |file|
   file.puts
   file.puts "GLOBAL REPORT FOR ALL PROTEIN-PROTEIN INTERACTION NETWORKS"
   file.puts
-  file.puts "Total number of nodes: #{Members.all_members.length}"
-  file.puts "Number of nets: #{Networks.all_networks.length}"
-  file.puts "Genes from list not included in any network: #{}"
+  file.puts "Total number of nodes: #{Members.number_of_members}"
+  file.puts "Number of nets: #{Networks.get_number_of_nets}"
+  file.puts "Genes from list not included in any network: #{Networks.nodes_without_net}"
   file.puts
   file.puts "---------------------------------------------------------------------------------------"
   file.puts
