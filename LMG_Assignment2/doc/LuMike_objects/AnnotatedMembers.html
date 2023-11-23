@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: LuMike_objects::AnnotatedMembers
+  
+    &mdash; Documentation by YARD 0.9.34
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "LuMike_objects::AnnotatedMembers";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (A)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../LuMike_objects.html" title="LuMike_objects (module)">LuMike_objects</a></span></span>
+     &raquo; 
+    <span class="title">AnnotatedMembers</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: LuMike_objects::AnnotatedMembers
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName"><span class='object_link'><a href="Members.html" title="LuMike_objects::Members (class)">Members</a></span></span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next"><span class='object_link'><a href="Members.html" title="LuMike_objects::Members (class)">Members</a></span></li>
+          
+            <li class="next">LuMike_objects::AnnotatedMembers</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>LMG_Assignment2/AnnotatedMembers.rb</dd>
+  </dl>
+  
+</div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<h2 id="label-AnnotatedMembers">AnnotatedMembers</h2>
+
+<p>Nodes of protein-protein interaction networks (Members) once they have annotated with the pathways these members are part of (KEGG Pathways) and its related GO Terms</p>
+
+<h2 id="label-Summary">Summary</h2>
+
+<p>Class used for repressenting members of protein-protein interaction networks considering their molecular characteristics in the cell</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+
+
+
+  <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#go_IDs_terms-instance_method" title="#go_IDs_terms (instance method)">#<strong>go_IDs_terms</strong>  &#x21d2; Hash </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Get/Set method for the GO ID and Term associated to the member.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#kegg_gene-instance_method" title="#kegg_gene (instance method)">#<strong>kegg_gene</strong>  &#x21d2; String </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Get/Set method for the identificator of KEGG associated with this member’s locus name.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#kegg_ID_pathway-instance_method" title="#kegg_ID_pathway (instance method)">#<strong>kegg_ID_pathway</strong>  &#x21d2; Hash </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Get/Set method for the KEGG ID and pathways the member is part of.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+  
+  
+  <h3 class="inherited">Attributes inherited from <span class='object_link'><a href="Members.html" title="LuMike_objects::Members (class)">Members</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Members.html#direct_interactors-instance_method" title="LuMike_objects::Members#direct_interactors (method)">#direct_interactors</a></span>, <span class='object_link'><a href="Members.html#uniprot_id-instance_method" title="LuMike_objects::Members#uniprot_id (method)">#uniprot_id</a></span></p>
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#annotate_GO-instance_method" title="#annotate_GO (instance method)">#<strong>annotate_GO</strong>  &#x21d2; void </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Given the Uniprot ID of the member, make a TOGO REST API request to search in GO database for the GO IDs and Go Terms associated to this member/protein Addtionaly, it retrieves also information related to the kegg id for the locus name of the member, if any (for KEGG annotations) Filtering: record only those GO Terms related to biological processes.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#annotate_kegg-instance_method" title="#annotate_kegg (instance method)">#<strong>annotate_kegg</strong>  &#x21d2; void </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Given the KEGG id for the locus name, make a TOGO REST API request to search in KEGG database for the ID and the description of the molecular pathways the protein is part of.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(**args)  &#x21d2; AnnotatedMembers </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Create a new instance of the class AnnotatedMembers.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#no_params_method-instance_method" title="#no_params_method (instance method)">#<strong>no_params_method</strong>  &#x21d2; void </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Given the Uniprot ID of the member, make a TOGO REST API request to search in GO database for the GO IDs and Go Terms associated to this member/protein Addtionaly, it retrieves also information related to the kegg id for the locus name of the member, if any (for KEGG annotations) Filtering: record only those GO Terms related to biological processes.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="Members.html" title="LuMike_objects::Members (class)">Members</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Members.html#all_coexpresed_members-class_method" title="LuMike_objects::Members.all_coexpresed_members (method)">all_coexpresed_members</a></span>, <span class='object_link'><a href="Members.html#all_members-class_method" title="LuMike_objects::Members.all_members (method)">all_members</a></span>, <span class='object_link'><a href="Members.html#find_interactors-instance_method" title="LuMike_objects::Members#find_interactors (method)">#find_interactors</a></span>, <span class='object_link'><a href="Members.html#gene_id-instance_method" title="LuMike_objects::Members#gene_id (method)">#gene_id</a></span>, <span class='object_link'><a href="Members.html#gene_id=-instance_method" title="LuMike_objects::Members#gene_id= (method)">#gene_id=</a></span>, <span class='object_link'><a href="Members.html#number_of_members-class_method" title="LuMike_objects::Members.number_of_members (method)">number_of_members</a></span>, <span class='object_link'><a href="Members.html#read_from_file-class_method" title="LuMike_objects::Members.read_from_file (method)">read_from_file</a></span></p>
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    #<strong>initialize</strong>(**args)  &#x21d2; <tt><span class='object_link'><a href="" title="LuMike_objects::AnnotatedMembers (class)">AnnotatedMembers</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Create a new instance of the class AnnotatedMembers</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'LMG_Assignment2/AnnotatedMembers.rb', line 31</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='op'>**</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+    <span class='kw'>super</span>
+    <span class='comment'># @atrr [Hash] GO ID and Terms associated to the member/protein
+</span>    <span class='ivar'>@go_IDs_terms</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+    <span class='comment'># @atrr [String] KEGG identificator for the member&#39;s locus name
+</span>    <span class='ivar'>@kegg_gene</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
+    <span class='comment'># @#atrr [Hash] KEGG ID and description of the molecular pathway the member is part of 
+</span>    <span class='ivar'>@kegg_ID_pathway</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+    <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_annotate_GO'>annotate_GO</span>
+    <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_annotate_kegg'>annotate_kegg</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id="go_IDs_terms=-instance_method"></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="go_IDs_terms-instance_method">
+  
+    #<strong>go_IDs_terms</strong>  &#x21d2; <tt>Hash</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Get/Set method for the GO ID and Term associated to the member</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Keys are the GO IDs and values are the GO Terms</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+17
+18
+19</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'LMG_Assignment2/AnnotatedMembers.rb', line 17</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_go_IDs_terms'>go_IDs_terms</span>
+  <span class='ivar'>@go_IDs_terms</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="kegg_gene=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="kegg_gene-instance_method">
+  
+    #<strong>kegg_gene</strong>  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Get/Set method for the identificator of KEGG associated with this member’s locus name</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>KEGG id for member’s locus name</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+22
+23
+24</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'LMG_Assignment2/AnnotatedMembers.rb', line 22</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_kegg_gene'>kegg_gene</span>
+  <span class='ivar'>@kegg_gene</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="kegg_ID_pathway=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="kegg_ID_pathway-instance_method">
+  
+    #<strong>kegg_ID_pathway</strong>  &#x21d2; <tt>Hash</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Get/Set method for the KEGG ID and pathways the member is part of</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Keys are the KEGG IDs and values are the pathway descriptions</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+27
+28
+29</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'LMG_Assignment2/AnnotatedMembers.rb', line 27</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_kegg_ID_pathway'>kegg_ID_pathway</span>
+  <span class='ivar'>@kegg_ID_pathway</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="annotate_GO-instance_method">
+  
+    #<strong>annotate_GO</strong>  &#x21d2; <tt>void</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Given the Uniprot ID of the member, make a TOGO REST API request to search in GO database for the GO IDs and Go Terms associated to this member/protein Addtionaly, it retrieves also information related to the kegg id for the locus name of the member, if any (for KEGG annotations) Filtering: record only those GO Terms related to biological processes</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'LMG_Assignment2/AnnotatedMembers.rb', line 60</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_annotate_GO'>annotate_GO</span>
+    <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='id identifier rubyid_togo_search'><span class='object_link'><a href="../top-level-namespace.html#togo_search-instance_method" title="#togo_search (method)">togo_search</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ebi-uniprot</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_uniprot_id'>uniprot_id</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/dr</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_result'>result</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_key?'>key?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>GO</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='id identifier rubyid_result'>result</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>GO</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='id identifier rubyid_result'>result</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>GO</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span> 
+        <span class='id identifier rubyid_list_of_GOs'>list_of_GOs</span> <span class='op'>=</span> <span class='id identifier rubyid_result'>result</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>GO</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>   <span class='comment'># Only GO terms would be recorded
+</span>        <span class='id identifier rubyid_list_of_GOs'>list_of_GOs</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_go'>go</span><span class='op'>|</span>
+            <span class='id identifier rubyid_biological_process'>biological_process</span> <span class='op'>=</span> <span class='id identifier rubyid_go'>go</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^[P]:</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span> <span class='comment'># Filering: Biological processes (P)
+</span>            <span class='kw'>if</span> <span class='id identifier rubyid_biological_process'>biological_process</span>
+                <span class='id identifier rubyid_id'>id</span> <span class='op'>=</span> <span class='id identifier rubyid_go'>go</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+                <span class='id identifier rubyid_term'>term</span> <span class='op'>=</span> <span class='id identifier rubyid_biological_process'>biological_process</span><span class='period'>.</span><span class='id identifier rubyid_post_match'>post_match</span>    <span class='comment'># What is after the GO ID is the GO Term
+</span>                <span class='ivar'>@go_IDs_terms</span><span class='lbracket'>[</span><span class='id identifier rubyid_id'>id</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_term'>term</span>
+            <span class='kw'>else</span>
+                <span class='kw'>next</span>
+            <span class='kw'>end</span>
+        <span class='kw'>end</span>
+    <span class='kw'>end</span>
+
+    <span class='kw'>if</span> <span class='id identifier rubyid_result'>result</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_key?'>key?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>KEGG</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='id identifier rubyid_result'>result</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>KEGG</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='id identifier rubyid_result'>result</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>KEGG</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>   <span class='comment'># Retrieve the KEGG ID associated to the locus name if any
+</span>        <span class='ivar'>@kegg_gene</span> <span class='op'>=</span> <span class='id identifier rubyid_result'>result</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>KEGG</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+    <span class='kw'>end</span>  
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="annotate_kegg-instance_method">
+  
+    #<strong>annotate_kegg</strong>  &#x21d2; <tt>void</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Given the KEGG id for the locus name, make a TOGO REST API request to search in KEGG database for the ID and the description of the molecular pathways the protein is part of</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+46
+47
+48
+49
+50
+51
+52
+53</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'LMG_Assignment2/AnnotatedMembers.rb', line 46</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_annotate_kegg'>annotate_kegg</span>
+    <span class='kw'>return</span> <span class='kw'>if</span> <span class='ivar'>@kegg_gene</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span> <span class='comment'># Check for presence of KEGG id, required to search for the molecular pathway details
+</span>
+    <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='id identifier rubyid_togo_search'><span class='object_link'><a href="../top-level-namespace.html#togo_search-instance_method" title="#togo_search (method)">togo_search</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>kegg-genes</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='ivar'>@kegg_gene</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_result'>result</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_key?'>key?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>pathways</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='id identifier rubyid_result'>result</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>pathways</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='id identifier rubyid_result'>result</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>pathways</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span> 
+        <span class='ivar'>@kegg_ID_pathway</span> <span class='op'>=</span> <span class='id identifier rubyid_result'>result</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>pathways</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+    <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="no_params_method-instance_method">
+  
+    #<strong>no_params_method</strong>  &#x21d2; <tt>void</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Given the Uniprot ID of the member, make a TOGO REST API request to search in GO database for the GO IDs and Go Terms associated to this member/protein Addtionaly, it retrieves also information related to the kegg id for the locus name of the member, if any (for KEGG annotations) Filtering: record only those GO Terms related to biological processes</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+46
+47
+48
+49
+50
+51
+52
+53</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'LMG_Assignment2/AnnotatedMembers.rb', line 46</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_annotate_kegg'>annotate_kegg</span>
+    <span class='kw'>return</span> <span class='kw'>if</span> <span class='ivar'>@kegg_gene</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span> <span class='comment'># Check for presence of KEGG id, required to search for the molecular pathway details
+</span>
+    <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='id identifier rubyid_togo_search'><span class='object_link'><a href="../top-level-namespace.html#togo_search-instance_method" title="#togo_search (method)">togo_search</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>kegg-genes</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='ivar'>@kegg_gene</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_result'>result</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_key?'>key?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>pathways</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='id identifier rubyid_result'>result</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>pathways</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='id identifier rubyid_result'>result</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>pathways</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span> 
+        <span class='ivar'>@kegg_ID_pathway</span> <span class='op'>=</span> <span class='id identifier rubyid_result'>result</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>pathways</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+    <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Thu Nov 23 19:03:47 2023 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.34 (ruby-3.0.0).
+</div>
+
+    </div>
+  </body>
+</html>
