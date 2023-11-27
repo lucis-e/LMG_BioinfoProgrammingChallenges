@@ -37,7 +37,7 @@ def read_from_file(filename)
         end
 
         record = get_sequences_from_ensembl(locus_name)
-        File.open('AT_sequences.embl', 'w') do |myfile|  # w makes it writable
+        File.open('AT_sequences.embl', 'a') do |myfile|  # a open the file in append mode, create if not exist, append if exists
             myfile.puts record  # save multiple records in one same file
         end
     end
@@ -46,6 +46,32 @@ end
 #-------------------------------------------MAIN CODE ------------------------------------------------------------------
 puts "Processing #{input_gene_list} file, this might take a while..."
 
-# retrive sequence from Ensembl and save into local file "AT_sequences.embl"
+# 1. retrive sequence from Ensembl and save into local file "AT_sequences.embl"
 
-read_from_file(input_gene_list)
+#read_from_file(input_gene_list) esto solo lo activamos la ult vez que ya tenemos el archivo creado
+
+# 2. Loop over very exon feature and scan it for the CTTCTT sequence
+datafile = Bio::FlatFile.auto('AT_sequences.embl')
+puts datafile.class  # Bio::FlatFile
+
+#datafile.each_entry do |entry| # the FILE is not the same as the RECORD - multiple records can exist in a file
+#    next unless entry.accession     # scape empty and nil values
+#  
+#end
+
+entry=datafile.next_entry
+
+puts entry.class
+puts "# #{entry.accession} - #{entry.species}"
+entry.features.each do |feature|
+    position = feature.position
+    qual = feature.assoc            # feature.assoc gives you a hash of Bio::Feature::Qualifier objects 
+                                    # i.e. qualifier['key'] = value  for example qualifier['gene'] = "CYP450")
+
+    next unless qual['exon']    # this is an indication that the feature is a transcript
+
+    # collects gene name and exon positions and joins it into a string
+    gene_info = [qual['gene'], qual['exon']].compact.join(', ')
+    puts gene_info
+end
+
