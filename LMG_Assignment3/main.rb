@@ -1,7 +1,23 @@
+# REVISAR NCBI LISTA IDs
+# exon_sequence = entry_sequence.subseq(start_exon, end_exon): si el exon no cae en seq es que no está?
+# COMO EVITAR OVERLAP DE MISMAS FEATURES
+# REVISAR QUE TODAS LAS LAS FEATURES ANOTADAS TENGAN UN FORMATO ESTÁNDAR EN LA PAGINA ESA
+# EL ID EN ATTRIBUTES ES COMO QUIERAS PERO IGUAL PARA TODOS Y CON UNA ENUMERACIÓN NO?ç
+# Ver SI EL SOURCE ES ESO O EL "annotated by Araport11", yo creo que eso
+# DOMINIOS CTTCTT QUE SE REFIEREN A LA MISMA SECUENCIA, PERO QUE ESTÁN EN 2 EXONES DISTINTOS, CÓMO CONSIDERARLO?
+# UNA SOLA LINEA DEL GFF Y LUEGO EN ATRIBUTES LE METES TODOS LOS EXONES QUE LO TIENEN?
+#Añadir una linea de metadata??
+# hacer un filtro por "note" del exon que incluya el gen de la lista ? realmente no es necesario pues los de ccs de la secuencia son los q se miraran y por
+#tanto son del gen de la lista.
+#CONFIRMAR SOURCE Y ATTRIBUTES y ARREGLAR LO DE "source = "" AL ppio"
+
+
+
 #----------------- LOAD EXTERNAL LIBRARIES AND MODULES-------------------------------------------------------------------
+
 require 'bio'
 require 'net/http'
-
+require './my_functions'
 
 #------------------------------ INPUT FILES NAMES AS ARGUMENTS FROM  COMMAND LINE ---------------------------------------
 
@@ -11,67 +27,45 @@ if ARGV.length != 1
 end
   
 # Check for second common error: incorrect usage, files in incorrect order or wrong name passed.
-if ARGV[0] == "ArabidopsisSubNetwork_GeneList.txt"
-    input_gene_list = ARGV[0]
+#if ARGV[0] == "ArabidopsisSubNetwork_GeneList.txt"
+if ARGV[0] == 'soloungen.txt'
+        gene_file = ARGV[0]
 else 
     abort "Incorrect order of files passed. Usage: ruby main.rb ArabidopsisSubNetwork_GeneList.txt"
 end
 
-#------------------------ PUBLIC INSTANCE METHODS -----------------------------------------------------------------------
 
-# esto lo podemos poner dentro de la de abajo me da igual
-def get_sequences_from_ensembl(locus_name)
-    address = URI("http://www.ebi.ac.uk/Tools/dbfetch/dbfetch?db=ensemblgenomesgene&format=embl&id=#{locus_name}")  
-    response = Net::HTTP.get_response(address)  # use the Net::HTTP object "get_response" method
-    return(response.body)
-end
-
-# read the gene locus names from file and retrieve the sequence info from Ensemble, save all records in a local file
-def read_from_file(filename)
-    gene_file = File.open(filename, 'r')
-    gene_file.readlines.each do |line|
-        locus_name=line.chomp
-
-        if locus_name !~ /A[Tt]\d[Gg]\d\d\d\d\d/ # Check for correct format of gene locus name
-            abort "Locus name #{locus_name} does not meet the correct format. Please define locus names as AT0g00000"
-        end
-
-        record = get_sequences_from_ensembl(locus_name)
-        File.open('AT_sequences.embl', 'a') do |myfile|  # a open the file in append mode, create if not exist, append if exists
-            myfile.puts record  # save multiple records in one same file
-        end
-    end
-end
 
 #-------------------------------------------MAIN CODE ------------------------------------------------------------------
-puts "Processing #{input_gene_list} file, this might take a while..."
 
-# 1. retrive sequence from Ensembl and save into local file "AT_sequences.embl"
 
-#read_from_file(input_gene_list) esto solo lo activamos la ult vez que ya tenemos el archivo creado
+# BEFORE EVERYTHING, SEARCHING EMBL FILE (Task 1)
 
-# 2. Loop over very exon feature and scan it for the CTTCTT sequence
-datafile = Bio::FlatFile.auto('AT_sequences.embl')
-puts datafile.class  # Bio::FlatFile
+        # 1:  Using BioRuby, examine the sequences of the ~167 Arabidopsis genes from the last assignment by retrieving them from whatever database you wish #
+        # ArabidopsisSubNetwork file -> each gene locus (lines) -> search for embl file -> add to 'AT_sequences.embl'
 
-#datafile.each_entry do |entry| # the FILE is not the same as the RECORD - multiple records can exist in a file
-#    next unless entry.accession     # scape empty and nil values
-#  
-#end
+puts "Processing #{gene_file} file, this might take a while..."
 
-entry=datafile.next_entry
+        # Create string with gene IDs from file
+gene_ids = read_from_file(gene_file)
 
-puts entry.class
-puts "# #{entry.accession} - #{entry.species}"
-entry.features.each do |feature|
-    position = feature.position
-    qual = feature.assoc            # feature.assoc gives you a hash of Bio::Feature::Qualifier objects 
-                                    # i.e. qualifier['key'] = value  for example qualifier['gene'] = "CYP450")
+        # Only one search with list of IDs
+response_body = ncbi_fetch(database = 'ensemblgenomesgene',file_format = 'embl', id = gene_ids)
 
-    next unless qual['exon']    # this is an indication that the feature is a transcript
+output_file = File.open('prueba.embl', 'w')
+output_file.write(response_body)
+output_file.close
 
-    # collects gene name and exon positions and joins it into a string
-    gene_info = [qual['gene'], qual['exon']].compact.join(', ')
-    puts gene_info
-end
+# FIRST PART WITH SEQUENCE COORDINATES (Tasks 2, 3, 4a, 4b)
 
+coordinates_to_use = "sequences coordinates"
+entries = scan_repetitive_features('prueba.embl', coordinates_to_use)
+gff = load_to_gff(entries, coordinates_to_use)
+write_gff(gff, coordinates_to_use)
+
+# SECOND PART WITH CHROMOSOMAL COORDINATES (Tasks 5, 6)
+
+coordinates_to_use = "chromosomal coordinates"
+entries = scan_repetitive_features('prueba.embl', coordinates_to_use)
+gff = load_to_gff(entries, coordinates_to_use)
+write_gff(gff, coordinates_to_use)

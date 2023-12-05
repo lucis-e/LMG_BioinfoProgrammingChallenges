@@ -1,0 +1,10 @@
+##gff-version 3
+Chr2	taxon:3702	repeat_region	220	225	.	-	.	ID=repeat_region_1;Name=CTTCTT_motif
+Chr2	taxon:3702	repeat_region	4920	4925	.	-	.	ID=repeat_region_2;Name=CTTCTT_motif
+Chr2	taxon:3702	repeat_region	5109	5114	.	-	.	ID=repeat_region_3;Name=CTTCTT_motif
+Chr2	taxon:3702	repeat_region	5112	5117	.	-	.	ID=repeat_region_4;Name=CTTCTT_motif
+Chr2	taxon:3702	repeat_region	5115	5120	.	-	.	ID=repeat_region_5;Name=CTTCTT_motif
+Chr2	taxon:3702	repeat_region	5118	5123	.	-	.	ID=repeat_region_6;Name=CTTCTT_motif
+Chr2	taxon:3702	repeat_region	5121	5126	.	-	.	ID=repeat_region_7;Name=CTTCTT_motif
+Chr2	taxon:3702	repeat_region	5124	5129	.	-	.	ID=repeat_region_8;Name=CTTCTT_motif
+Chr2	taxon:3702	repeat_region	1175	1180	.	-	.	ID=repeat_region_9;Name=CTTCTT_motif

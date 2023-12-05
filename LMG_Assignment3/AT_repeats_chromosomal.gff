@@ -1,0 +1,10 @@
+##gff-version 3
+chromosome:TAIR10:2:19022154:19027528:1	taxon:3702	repeat_region	19022373	19022377	.	-	.	ID=repeat_region_1;Name=CTTCTT_motif
+chromosome:TAIR10:2:19022154:19027528:1	taxon:3702	repeat_region	19027073	19027077	.	-	.	ID=repeat_region_2;Name=CTTCTT_motif
+chromosome:TAIR10:2:19022154:19027528:1	taxon:3702	repeat_region	19027262	19027266	.	-	.	ID=repeat_region_3;Name=CTTCTT_motif
+chromosome:TAIR10:2:19022154:19027528:1	taxon:3702	repeat_region	19027265	19027269	.	-	.	ID=repeat_region_4;Name=CTTCTT_motif
+chromosome:TAIR10:2:19022154:19027528:1	taxon:3702	repeat_region	19027268	19027272	.	-	.	ID=repeat_region_5;Name=CTTCTT_motif
+chromosome:TAIR10:2:19022154:19027528:1	taxon:3702	repeat_region	19027271	19027275	.	-	.	ID=repeat_region_6;Name=CTTCTT_motif
+chromosome:TAIR10:2:19022154:19027528:1	taxon:3702	repeat_region	19027274	19027278	.	-	.	ID=repeat_region_7;Name=CTTCTT_motif
+chromosome:TAIR10:2:19022154:19027528:1	taxon:3702	repeat_region	19027277	19027281	.	-	.	ID=repeat_region_8;Name=CTTCTT_motif
+chromosome:TAIR10:2:19022154:19027528:1	taxon:3702	repeat_region	19023328	19023332	.	-	.	ID=repeat_region_9;Name=CTTCTT_motif
