@@ -8,13 +8,13 @@ require './EmblProcessor.rb'
 
 # Check for one common error: not specifying the correct number of files needed for the program to run
 if ARGV.length != 1
-    abort "Incorrect number of files passed. Two files names must be specified: input list of genes and name for final_report"
+    abort "Incorrect number of files passed. Gene file name must be specified: input list of genes"
 end
   
 # Check for second common error: incorrect usage, files in incorrect order or wrong name passed.
 if ARGV[0] == "ArabidopsisSubNetwork_GeneList.txt"
 #if ARGV[0] == 'soloungen.txt'
-        gene_file = ARGV[0]
+    gene_file = ARGV[0]
 else 
     abort "Incorrect order of files passed. Usage: ruby main.rb ArabidopsisSubNetwork_GeneList.txt"
 end
@@ -97,23 +97,22 @@ def write_gff(gff, coordinates_to_use)
 end
   
 #-------------------------------------------MAIN CODE ------------------------------------------------------------------
-# BEFORE EVERYTHING, SEARCHING EMBL FILE (Task 1)
 
 # 1:  Using BioRuby, examine the sequences of the ~167 Arabidopsis genes from the last assignment by retrieving them from whatever database you wish #
 # ArabidopsisSubNetwork file -> each gene locus (lines) -> search for embl file -> add to 'AT_sequences.embl'
 
 puts "Processing #{gene_file} file, this might take a while..."
 
-# ACTIVAR AL FINAL
 # Create string with gene IDs from file
-#gene_ids = read_from_file(gene_file)
+gene_ids = read_from_file(gene_file)
 
 # Only one search with list of IDs
-#response_body = ncbi_fetch(database = 'ensemblgenomesgene',file_format = 'embl', id = gene_ids)
+response_body = ncbi_fetch(database = 'ensemblgenomesgene',file_format = 'embl', id = gene_ids)
 
-#output_file = File.open('AT_sequences.embl', 'w')
-#output_file.write(response_body)
-#output_file.close
+filename = 'AT_sequences.embl'
+output_file = File.open(filename, 'w')
+output_file.write(response_body)
+output_file.close
 
 
 search_positive = Bio::Sequence::NA.new("cttctt")
@@ -124,14 +123,15 @@ REGEX_COMPLEMENT = Regexp.new(search_complementary.to_re)
 
 # 2, 3, 4a and 4b
 
-eobject_processor = EmblProcessor.new('AT_sequences.embl')
+eobject_processor = EmblProcessor.new(filename)
 gff_seq = eobject_processor.load_to_gff('sequences coordinates')
 write_gff(gff_seq, 'sequences coordinates')
 
-eobject_processor_chr = EmblProcessor.new('AT_sequences.embl')
+# 5 and 6
+
+eobject_processor_chr = EmblProcessor.new(filename)
 gff_chr = eobject_processor_chr.load_to_gff('chromosomal coordinates')
-puts gff_chr
-write_gff(gff_chr, 'chromosomal coordinates')
+write_gff(gff_chr,'chromosomal coordinates')
 
 
 
