@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Top Level Namespace
+  
+    &mdash; Documentation by YARD 0.9.34
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo;
+    
+    
+    <span class="title">Top Level Namespace</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Top Level Namespace
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+</div>
+
+<h2>Defined Under Namespace</h2>
+<p class="children">
+  
+    
+  
+    
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="EmblEntry.html" title="EmblEntry (class)">EmblEntry</a></span>, <span class='object_link'><a href="EmblProcessor.html" title="EmblProcessor (class)">EmblProcessor</a></span>
+    
+  
+</p>
+
+  
+    <h2>
+      Constant Summary
+      <small><a href="#" class="constants_summary_toggle">collapse</a></small>
+    </h2>
+
+    <dl class="constants">
+      
+        <dt id="REGEX_POSITIVE-constant" class="">REGEX_POSITIVE =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Regular expression to find CTTCTT motifs in positive strand</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='const'>Regexp</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_search_positive'>search_positive</span><span class='period'>.</span><span class='id identifier rubyid_to_re'>to_re</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="REGEX_COMPLEMENT-constant" class="">REGEX_COMPLEMENT =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Regular expresion to find CTTCTT motifs in the complementary strand</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='const'>Regexp</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_search_complementary'>search_complementary</span><span class='period'>.</span><span class='id identifier rubyid_to_re'>to_re</span><span class='rparen'>)</span></pre></dd>
+      
+    </dl>
+  
+
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="top-level-namespace.html#fetch-instance_method" title="#fetch (instance method)">#<strong>fetch</strong>(uri_str)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Gets a response from a given URL.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="top-level-namespace.html#find_motifs-instance_method" title="#find_motifs (instance method)">#<strong>find_motifs</strong>(sequence, motif)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Given an specific motif (sequence pattern) get its start and end coordinates of any match in a given sequence.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="top-level-namespace.html#get_coordinates-instance_method" title="#get_coordinates (instance method)">#<strong>get_coordinates</strong>(coordinates_string)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Given a string with all cordinates it splits and finds start and end coordinates.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="top-level-namespace.html#ncbi_fetch-instance_method" title="#ncbi_fetch (instance method)">#<strong>ncbi_fetch</strong>(database, file_format, id)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Programmatic access to NCBI E-Utils,.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="top-level-namespace.html#read_from_file-instance_method" title="#read_from_file (instance method)">#<strong>read_from_file</strong>(filename)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Read all genes (locus names in the file) and create a comma-separated string of them.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="top-level-namespace.html#write_gff-instance_method" title="#write_gff (instance method)">#<strong>write_gff</strong>(gff, coordinates_to_use)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Write a GFF3 file.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="fetch-instance_method">
+  
+    #<strong>fetch</strong>(uri_str)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Gets a response from a given URL</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>uri_str</span>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>URL to make the get request to</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'LMG_Assignment3/main.rb', line 27</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='id identifier rubyid_uri_str'>uri_str</span><span class='rparen'>)</span> 
+    <span class='id identifier rubyid_address'>address</span> <span class='op'>=</span> <span class='const'>URI</span><span class='lparen'>(</span><span class='id identifier rubyid_uri_str'>uri_str</span><span class='rparen'>)</span>  
+    <span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='const'>Net</span><span class='op'>::</span><span class='const'>HTTP</span><span class='period'>.</span><span class='id identifier rubyid_get_response'>get_response</span><span class='lparen'>(</span><span class='id identifier rubyid_address'>address</span><span class='rparen'>)</span>
+    <span class='kw'>case</span> <span class='id identifier rubyid_response'>response</span>
+      <span class='kw'>when</span> <span class='const'>Net</span><span class='op'>::</span><span class='const'>HTTPSuccess</span> <span class='kw'>then</span>
+        <span class='kw'>return</span> <span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_body'>body</span>
+      <span class='kw'>else</span>
+        <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Exception</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Something went wrong... the call to </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_uri_str'>uri_str</span><span class='embexpr_end'>}</span><span class='tstring_content'> failed; type </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+        <span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='kw'>false</span>
+        <span class='kw'>return</span> <span class='id identifier rubyid_response'>response</span>
+    <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="find_motifs-instance_method">
+  
+    #<strong>find_motifs</strong>(sequence, motif)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Given an specific motif (sequence pattern) get its start and end coordinates of any match in a given sequence</p>
+
+<p>return matches [Array&lt;String&gt;] array with all matches (found motifs) and its start and end coordinates (referenced to the sequence string param)</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>sequence</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>sequence string to find the specific pattern</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>motif</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>string pattern</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'LMG_Assignment3/main.rb', line 87</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_find_motifs'>find_motifs</span> <span class='lparen'>(</span><span class='id identifier rubyid_sequence'>sequence</span><span class='comma'>,</span> <span class='id identifier rubyid_motif'>motif</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_matches'>matches</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_position'>position</span> <span class='op'>=</span> <span class='int'>0</span>    <span class='comment'># start seaching point
+</span>    <span class='kw'>while</span> <span class='lparen'>(</span><span class='id identifier rubyid_match'>match</span> <span class='op'>=</span> <span class='id identifier rubyid_sequence'>sequence</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='id identifier rubyid_motif'>motif</span><span class='comma'>,</span> <span class='id identifier rubyid_position'>position</span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='comment'># look for the first match
+</span>        <span class='id identifier rubyid_match_sequence'>match_sequence</span> <span class='op'>=</span> <span class='id identifier rubyid_match'>match</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>   <span class='comment'># match
+</span>        <span class='id identifier rubyid_start_motif'>start_motif</span> <span class='op'>=</span> <span class='id identifier rubyid_match'>match</span><span class='period'>.</span><span class='id identifier rubyid_begin'>begin</span><span class='lparen'>(</span><span class='int'>0</span><span class='rparen'>)</span>    <span class='comment'># get start and end coordinates (reference system is the string sequence)
+</span>        <span class='id identifier rubyid_end_motif'>end_motif</span> <span class='op'>=</span> <span class='id identifier rubyid_match'>match</span><span class='period'>.</span><span class='id identifier rubyid_end'>end</span><span class='lparen'>(</span><span class='int'>0</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_matches'>matches</span> <span class='op'>&lt;&lt;</span> <span class='lbrace'>{</span>    <span class='comment'># add the match to array of matches
+</span>          <span class='label'>sequence:</span> <span class='id identifier rubyid_match_sequence'>match_sequence</span><span class='comma'>,</span>
+          <span class='label'>start:</span> <span class='id identifier rubyid_start_motif'>start_motif</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='comma'>,</span>
+          <span class='label'>end:</span> <span class='id identifier rubyid_end_motif'>end_motif</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
+        <span class='rbrace'>}</span>
+        <span class='comment'># Move the position forward, &quot;- 5&quot; allows to detect a domain &quot;CTTCTTCTT&quot;, and that will be detected as 2
+</span>        <span class='id identifier rubyid_position'>position</span> <span class='op'>=</span> <span class='id identifier rubyid_end_motif'>end_motif</span> <span class='op'>-</span> <span class='int'>5</span>    <span class='comment'># Move the searching position, it allows to search for in (or not in) phase consecutive repetitons (considered individually) 
+</span>    <span class='kw'>end</span>
+    <span class='kw'>return</span> <span class='id identifier rubyid_matches'>matches</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_coordinates-instance_method">
+  
+    #<strong>get_coordinates</strong>(coordinates_string)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Given a string with all cordinates it splits and finds start and end coordinates</p>
+
+<p>return [Array&lt;Integer&gt;] retrieved coordinates as a two-element array</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>coordinates_string</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>string of coordinates to retrieve start and end coordinates</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+75
+76
+77
+78
+79
+80</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'LMG_Assignment3/main.rb', line 75</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_coordinates'>get_coordinates</span><span class='lparen'>(</span><span class='id identifier rubyid_coordinates_string'>coordinates_string</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_position'>position</span> <span class='op'>=</span> <span class='id identifier rubyid_coordinates_string'>coordinates_string</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\d+\.\.\d+</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>    <span class='comment'># coordinates as &quot;start..end&quot;
+</span>    <span class='id identifier rubyid_start_coordinate'>start_coordinate</span> <span class='op'>=</span> <span class='id identifier rubyid_position'>position</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>..</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
+    <span class='id identifier rubyid_end_coordinate'>end_coordinate</span> <span class='op'>=</span> <span class='id identifier rubyid_position'>position</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>..</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
+    <span class='kw'>return</span><span class='lbracket'>[</span><span class='id identifier rubyid_start_coordinate'>start_coordinate</span><span class='comma'>,</span> <span class='id identifier rubyid_end_coordinate'>end_coordinate</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="ncbi_fetch-instance_method">
+  
+    #<strong>ncbi_fetch</strong>(database, file_format, id)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Programmatic access to NCBI E-Utils,</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>database</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the database to retrieve gene’s information</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>file_format</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>type of format for the response</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>gene_locus</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the gene’s locus name to retrieve info about.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+45
+46
+47
+48
+49
+50</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'LMG_Assignment3/main.rb', line 45</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_ncbi_fetch'>ncbi_fetch</span><span class='lparen'>(</span><span class='id identifier rubyid_database'>database</span><span class='comma'>,</span> <span class='id identifier rubyid_file_format'>file_format</span><span class='comma'>,</span> <span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_url'>url</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>http://www.ebi.ac.uk/Tools/dbfetch/dbfetch?db=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_database'>database</span><span class='embexpr_end'>}</span><span class='tstring_content'>&amp;format=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_file_format'>file_format</span><span class='embexpr_end'>}</span><span class='tstring_content'>&amp;id=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='comment'>#puts url
+</span>    <span class='id identifier rubyid_res'>res</span> <span class='op'>=</span> <span class='id identifier rubyid_fetch'><span class='object_link'><a href="#fetch-instance_method" title="#fetch (method)">fetch</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_url'>url</span><span class='rparen'>)</span>
+    <span class='kw'>return</span> <span class='id identifier rubyid_res'>res</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="read_from_file-instance_method">
+  
+    #<strong>read_from_file</strong>(filename)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Read all genes (locus names in the file) and create a comma-separated string of them. Check for correct gene format and species</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>filename</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Name of the file with the locus names of the genes to retrieve sequence’s info about</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'LMG_Assignment3/main.rb', line 56</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_read_from_file'>read_from_file</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_gene_list'>gene_list</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_gene_file'>gene_file</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>r</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_gene_file'>gene_file</span><span class='period'>.</span><span class='id identifier rubyid_readlines'>readlines</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_line'>line</span><span class='op'>|</span>  
+        <span class='id identifier rubyid_locus_name'>locus_name</span><span class='op'>=</span><span class='id identifier rubyid_line'>line</span><span class='period'>.</span><span class='id identifier rubyid_chomp'>chomp</span>
+        <span class='kw'>if</span> <span class='id identifier rubyid_locus_name'>locus_name</span> <span class='op'>!~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>A[Tt]\d[Gg]\d\d\d\d\d</span><span class='regexp_end'>/</span></span> <span class='comment'># Check for correct format of gene locus name.Also: A.thaliana
+</span>            <span class='id identifier rubyid_abort'>abort</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Locus name </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_locus_name'>locus_name</span><span class='embexpr_end'>}</span><span class='tstring_content'> does not meet the correct format. Please define locus names as AT0g00000</span><span class='tstring_end'>&quot;</span></span>
+        <span class='kw'>end</span>
+        <span class='id identifier rubyid_gene_list'>gene_list</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_locus_name'>locus_name</span> 
+    <span class='kw'>end</span>
+    <span class='id identifier rubyid_gene_file'>gene_file</span><span class='period'>.</span><span class='id identifier rubyid_close'>close</span>
+    <span class='id identifier rubyid_gene_ids'>gene_ids</span> <span class='op'>=</span> <span class='id identifier rubyid_gene_list'>gene_list</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>,</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>  <span class='comment'># From list of genes to comma-separated string to add to url (one programmatic access for all genes)
+</span>    <span class='kw'>return</span> <span class='id identifier rubyid_gene_ids'>gene_ids</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="write_gff-instance_method">
+  
+    #<strong>write_gff</strong>(gff, coordinates_to_use)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Write a GFF3 file</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>gff</span>
+      
+      
+        <span class='type'>(<tt>Bio::GFF::GFF3</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Bio::GFF object to be printed out into a file</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>coordinates_to_use</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Reference system to calculate motif’s coordinates respect with</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'LMG_Assignment3/main.rb', line 109</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_write_gff'>write_gff</span><span class='lparen'>(</span><span class='id identifier rubyid_gff'>gff</span><span class='comma'>,</span> <span class='id identifier rubyid_coordinates_to_use'>coordinates_to_use</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_coordinates_to_use'>coordinates_to_use</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>chromosomal coordinates</span><span class='tstring_end'>&#39;</span></span>
+        <span class='id identifier rubyid_file'>file</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>AT_repeats_chromosomal.gff</span><span class='tstring_end'>&#39;</span></span>
+    <span class='kw'>else</span>
+        <span class='id identifier rubyid_file'>file</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>AT_repeats_sequence.gff</span><span class='tstring_end'>&#39;</span></span>
+    <span class='kw'>end</span>
+    <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='id identifier rubyid_file'>file</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>w</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_file'>file</span><span class='op'>|</span>
+      <span class='id identifier rubyid_file'>file</span><span class='period'>.</span><span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_gff'>gff</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
+    <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Wed Dec  6 07:05:07 2023 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.34 (ruby-3.0.0).
+</div>
+
+    </div>
+  </body>
+</html>

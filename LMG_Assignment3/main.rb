@@ -138,7 +138,10 @@ output_file.close
 
 search_positive = Bio::Sequence::NA.new("cttctt")   # motif to look for in positive strand
 search_complementary = Bio::Sequence::NA.new("aagaag")  # motif to look for in positive stran (to find CTTCTT in complemnt strand)
+
+# Regular expression to find CTTCTT motifs in positive strand
 REGEX_POSITIVE = Regexp.new(search_positive.to_re)
+# Regular expresion to find CTTCTT motifs in the complementary strand
 REGEX_COMPLEMENT = Regexp.new(search_complementary.to_re)
 
 

@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: EmblProcessor
+  
+    &mdash; Documentation by YARD 0.9.34
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "EmblProcessor";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index (E)</a> &raquo;
+    
+    
+    <span class="title">EmblProcessor</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: EmblProcessor
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">EmblProcessor</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>LMG_Assignment3/EmblProcessor.rb</dd>
+  </dl>
+  
+</div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<h2 id="label-EmblProcessor">EmblProcessor</h2>
+
+<p>Object representing a processor for .embl files to create a final GFF3 file</p>
+
+<h2 id="label-Summary">Summary</h2>
+
+<p>Class used for processing an EMBL file, creating objects for each of its entries (information about the sequence of a given gene) as EMBL objects and finally creating a GFF3 file with the annotated CTTCTT motifs found in exonic regions</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+
+
+
+  <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#entries-instance_method" title="#entries (instance method)">#<strong>entries</strong>  &#x21d2; String </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Get/Set method for all EmblEntry objects created (all entries of the .embl file).</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(filename)  &#x21d2; EmblProcessor </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>It creates a new instance of EmblProcessor.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#load_to_gff-instance_method" title="#load_to_gff (instance method)">#<strong>load_to_gff</strong>(coordinates_to_use)  &#x21d2; Bio::GFF::GFF3 </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Creates a Bio::GFF:GFF3 object with all motifs annotated found in each gene exons to be printed out.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#scan_entries-instance_method" title="#scan_entries (instance method)">#<strong>scan_entries</strong>(filename)  &#x21d2; entries </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Create EmblEntry objects out of the entries of the EMBL file.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    #<strong>initialize</strong>(filename)  &#x21d2; <tt><span class='object_link'><a href="" title="EmblProcessor (class)">EmblProcessor</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>It creates a new instance of EmblProcessor</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>filename</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the name of the .embl file</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+22
+23
+24</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'LMG_Assignment3/EmblProcessor.rb', line 22</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span><span class='rparen'>)</span>
+    <span class='ivar'>@entries</span> <span class='op'>=</span> <span class='id identifier rubyid_scan_entries'>scan_entries</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id="entries=-instance_method"></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="entries-instance_method">
+  
+    #<strong>entries</strong>  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Get/Set method for all EmblEntry objects created (all entries of the .embl file)</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>all EmblEntry instances</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+15
+16
+17</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'LMG_Assignment3/EmblProcessor.rb', line 15</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_entries'>entries</span>
+  <span class='ivar'>@entries</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="load_to_gff-instance_method">
+  
+    #<strong>load_to_gff</strong>(coordinates_to_use)  &#x21d2; <tt>Bio::GFF::GFF3</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Creates a Bio::GFF:GFF3 object with all motifs annotated found in each gene exons to be printed out</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>coordinates_to_use</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>reference system to calculate the coordinates of the motif with respect to</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Bio::GFF::GFF3</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the Bio::GFF::GFF3 object</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'LMG_Assignment3/EmblProcessor.rb', line 47</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_load_to_gff'>load_to_gff</span><span class='lparen'>(</span><span class='id identifier rubyid_coordinates_to_use'>coordinates_to_use</span><span class='rparen'>)</span>
+  
+  <span class='id identifier rubyid_report_count'>report_count</span> <span class='op'>=</span> <span class='int'>0</span> <span class='comment'># ID of genes with no CTTCTT motif found in its exons
+</span>  <span class='id identifier rubyid_entries_without_regions'>entries_without_regions</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+
+  <span class='id identifier rubyid_gff'>gff</span> <span class='op'>=</span> <span class='const'>Bio</span><span class='op'>::</span><span class='const'>GFF</span><span class='op'>::</span><span class='const'>GFF3</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>  <span class='comment'># new Bio::GFF::GFF3 object
+</span>  <span class='id identifier rubyid_feature_count'>feature_count</span> <span class='op'>=</span> <span class='int'>1</span> <span class='comment'># ID of feature to be annotated in GFF3
+</span>    
+  <span class='ivar'>@entries</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_embl_entry'>embl_entry</span><span class='op'>|</span>
+
+    <span class='id identifier rubyid_embl_entry'>embl_entry</span><span class='period'>.</span><span class='id identifier rubyid_process_cttctt_repeats'>process_cttctt_repeats</span><span class='lparen'>(</span><span class='id identifier rubyid_coordinates_to_use'>coordinates_to_use</span><span class='rparen'>)</span> <span class='comment'># found all motifs of all exons and add it as feature of the entry /gene
+</span>    
+    <span class='id identifier rubyid_feature_exists'>feature_exists</span> <span class='op'>=</span> <span class='id identifier rubyid_embl_entry'>embl_entry</span><span class='period'>.</span><span class='id identifier rubyid_entry_sequence'>entry_sequence</span><span class='period'>.</span><span class='id identifier rubyid_features'>features</span><span class='period'>.</span><span class='id identifier rubyid_any?'>any?</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_feature'>feature</span><span class='op'>|</span> <span class='id identifier rubyid_feature'>feature</span><span class='period'>.</span><span class='id identifier rubyid_feature'>feature</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>cttctt_repeat</span><span class='tstring_end'>&#39;</span></span> <span class='rbrace'>}</span> <span class='comment'># check: has this entry/gene have been annotated
+</span>    
+    <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_feature_exists'>feature_exists</span>  <span class='comment'># if not then this gene does not have CTTCTT patterns in its exons
+</span>      <span class='id identifier rubyid_entries_without_regions'>entries_without_regions</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_embl_entry'>embl_entry</span>
+      <span class='id identifier rubyid_report_count'>report_count</span> <span class='op'>+=</span> <span class='int'>1</span>
+      <span class='kw'>next</span>
+    <span class='kw'>end</span>
+
+    <span class='id identifier rubyid_embl_entry'>embl_entry</span><span class='period'>.</span><span class='id identifier rubyid_entry_sequence'>entry_sequence</span><span class='period'>.</span><span class='id identifier rubyid_features'>features</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_feature'>feature</span><span class='op'>|</span>
+
+      <span class='kw'>next</span> <span class='kw'>unless</span> <span class='id identifier rubyid_feature'>feature</span><span class='period'>.</span><span class='id identifier rubyid_feature'>feature</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>cttctt_repeat</span><span class='tstring_end'>&#39;</span></span>  <span class='comment'># look only for CTTCTT motif features
+</span>    
+      <span class='id identifier rubyid_qual'>qual</span> <span class='op'>=</span> <span class='id identifier rubyid_feature'>feature</span><span class='period'>.</span><span class='id identifier rubyid_assoc'>assoc</span>
+      <span class='id identifier rubyid_attributes'>attributes</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='lbrace'>{</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ID</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>repeat_region_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_feature_count'>feature_count</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Name</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>cttctt_repeat_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_embl_entry'>embl_entry</span><span class='period'>.</span><span class='id identifier rubyid_gene_locus'>gene_locus</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span><span class='rbracket'>]</span> <span class='comment'># atrributes of the GFF3 file
+</span>    
+      <span class='id identifier rubyid_seqid'>seqid</span> <span class='op'>=</span> <span class='id identifier rubyid_embl_entry'>embl_entry</span><span class='period'>.</span><span class='id identifier rubyid_seq_id'>seq_id</span>
+      
+      <span class='comment'># New record for GFF file
+</span>      <span class='id identifier rubyid_gff'>gff</span><span class='period'>.</span><span class='id identifier rubyid_records'>records</span> <span class='op'>&lt;&lt;</span> <span class='const'>Bio</span><span class='op'>::</span><span class='const'>GFF</span><span class='op'>::</span><span class='const'>GFF3</span><span class='op'>::</span><span class='const'>Record</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span>
+        <span class='id identifier rubyid_seqid'>seqid</span><span class='comma'>,</span>            <span class='comment'># seqID
+</span>        <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>programatically</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span><span class='comment'># source
+</span>        <span class='id identifier rubyid_qual'>qual</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>SO_Name</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>  <span class='comment'># feature type
+</span>        <span class='id identifier rubyid_qual'>qual</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>start</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>    <span class='comment'># start
+</span>        <span class='id identifier rubyid_qual'>qual</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>end</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>      <span class='comment'># end
+</span>        <span class='kw'>nil</span><span class='comma'>,</span>              <span class='comment'># score
+</span>        <span class='id identifier rubyid_qual'>qual</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>strand</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>   <span class='comment'># strand
+</span>        <span class='kw'>nil</span><span class='comma'>,</span>              <span class='comment'># phase
+</span>        <span class='id identifier rubyid_attributes'>attributes</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>     <span class='comment'># attributes
+</span>      <span class='rparen'>)</span>
+      <span class='id identifier rubyid_feature_count'>feature_count</span> <span class='op'>+=</span> <span class='int'>1</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># REPORT: number and locus name of genes without CTTCTT pattern in its exons
+</span>  <span class='id identifier rubyid_report'>report</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>gff_report.txt</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>w</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_report'>report</span><span class='period'>.</span><span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>REPORT OF GENES WITHOUT \&#39;CTTCTT\&#39; REPETITIVE REGIONS AFTER CREATING GFF FILE</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_report'>report</span><span class='period'>.</span><span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>---------------------------------------------------------------------------</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_entries_without_regions'>entries_without_regions</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_entry'>entry</span><span class='op'>|</span>
+    <span class='id identifier rubyid_report'>report</span><span class='period'>.</span><span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_entry'>entry</span><span class='period'>.</span><span class='id identifier rubyid_gene_locus'>gene_locus</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_report'>report</span><span class='period'>.</span><span class='id identifier rubyid_puts'>puts</span>
+  <span class='id identifier rubyid_report'>report</span><span class='period'>.</span><span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>TOTAL GENES: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_report_count'>report_count</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_report'>report</span><span class='period'>.</span><span class='id identifier rubyid_close'>close</span>
+
+  <span class='kw'>return</span> <span class='id identifier rubyid_gff'>gff</span>  <span class='comment'># final Bio::GFF::GFF3 object
+</span><span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="scan_entries-instance_method">
+  
+    #<strong>scan_entries</strong>(filename)  &#x21d2; <tt><span class='object_link'><a href="#entries-instance_method" title="EmblProcessor#entries (method)">entries</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Create EmblEntry objects out of the entries of the EMBL file</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>filename</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the name of the .embl file</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="#entries-instance_method" title="EmblProcessor#entries (method)">entries</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>all EmblEntry instances created out of the EMBL file</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'LMG_Assignment3/EmblProcessor.rb', line 29</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_scan_entries'>scan_entries</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_embl_file'>embl_file</span> <span class='op'>=</span> <span class='const'>Bio</span><span class='op'>::</span><span class='const'>FlatFile</span><span class='period'>.</span><span class='id identifier rubyid_auto'>auto</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span><span class='rparen'>)</span>  <span class='comment'># .embl file as a Bio::FlatFile object 
+</span>    <span class='id identifier rubyid_entries'>entries</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+
+    <span class='id identifier rubyid_embl_file'>embl_file</span><span class='period'>.</span><span class='id identifier rubyid_each_entry'>each_entry</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_entry'>entry</span><span class='op'>|</span>
+        <span class='kw'>next</span> <span class='kw'>unless</span> <span class='id identifier rubyid_entry'>entry</span><span class='period'>.</span><span class='id identifier rubyid_accession'>accession</span> <span class='comment'># If not accession, then next 
+</span>        <span class='id identifier rubyid_start_entry'>start_entry</span><span class='comma'>,</span> <span class='id identifier rubyid_end_entry'>end_entry</span> <span class='op'>=</span> <span class='id identifier rubyid_get_coordinates'><span class='object_link'><a href="top-level-namespace.html#get_coordinates-instance_method" title="#get_coordinates (method)">get_coordinates</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_entry'>entry</span><span class='period'>.</span><span class='id identifier rubyid_definition'>definition</span><span class='rparen'>)</span>  <span class='comment'>#  Get chromosomal coordinates of each gene
+</span>        <span class='id identifier rubyid_embl_entry'>embl_entry</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="EmblEntry.html" title="EmblEntry (class)">EmblEntry</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="EmblEntry.html#initialize-instance_method" title="EmblEntry#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_entry'>entry</span><span class='comma'>,</span> <span class='id identifier rubyid_start_entry'>start_entry</span><span class='comma'>,</span> <span class='id identifier rubyid_end_entry'>end_entry</span><span class='rparen'>)</span> <span class='comment'># create a new EmblEntry instance
+</span>        <span class='id identifier rubyid_embl_entry'>embl_entry</span><span class='period'>.</span><span class='id identifier rubyid_annotate_source_gene'>annotate_source_gene</span> <span class='comment'># Add as features the source and the gene locus name
+</span>        <span class='id identifier rubyid_entries'>entries</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_embl_entry'>embl_entry</span>   
+    <span class='kw'>end</span>
+    
+    <span class='kw'>return</span> <span class='id identifier rubyid_entries'>entries</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Wed Dec  6 07:05:08 2023 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.34 (ruby-3.0.0).
+</div>
+
+    </div>
+  </body>
+</html>

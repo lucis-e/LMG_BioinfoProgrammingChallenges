@@ -154,7 +154,7 @@ class EmblEntry
             end
 
             coordinates = coordinates_format % "#{start_motif}..#{end_motif}"
-            add_cttctt_repeat(coordinates, start_motif, end_motif, strand, @source) # add motif as feature of the Bio::Sequence object
+            add_cttctt_repeat(coordinates, start_motif, end_motif, strand) # add motif as feature of the Bio::Sequence object
             
           end
         end
