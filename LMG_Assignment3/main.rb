@@ -23,7 +23,7 @@ end
 
 # Gets a response from a given URL
 #
-# @param uri_str
+# @param uri_str URL to make the get request to 
 def fetch(uri_str) 
     address = URI(uri_str)  
     response = Net::HTTP.get_response(address)
