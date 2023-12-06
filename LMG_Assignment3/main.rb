@@ -128,7 +128,7 @@ eobject_processor = EmblProcessor.new('AT_sequences.embl')
 gff_seq = eobject_processor.load_to_gff('sequences coordinates')
 write_gff(gff_seq, 'sequences coordinates')
 
-eobject_processor_chr = EmblProcessor.new('AT_sequences1.embl')
+eobject_processor_chr = EmblProcessor.new('AT_sequences.embl')
 gff_chr = eobject_processor_chr.load_to_gff('chromosomal coordinates')
 puts gff_chr
 write_gff(gff_chr, 'chromosomal coordinates')
