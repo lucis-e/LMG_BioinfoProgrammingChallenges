@@ -32,8 +32,8 @@ end
  
 # Make database from proteome file depending of the type of sequences contained in the fasta file 
 
-def make_db(filename, dbname)
-    sequence_type = fasta_sequence(filename)    # get the sequence type to define -dbtype
+def make_db(fasta_file, filename, dbname)
+    sequence_type = fasta_sequence(fasta_file)    # get the sequence type to define -dbtype
     result = system("makeblastdb -in #{filename} -dbtype '#{sequence_type}' -out ./Databases/#{dbname}")
     if $?.success?
         puts "BLAST database #{dbname} created successfully."
@@ -54,7 +54,7 @@ def ask_for_translation(file)
     when "yes", "y"
         return true
     else 
-        "Invalid response. Please enter yes (y) or no (n)"
+        return "Invalid response. Please enter yes (y) or no (n)"
     end
 end
 
@@ -94,15 +94,17 @@ else
 end
 
 
+
+pombe_fasta = Bio::FlatFile.open(Bio::FastaFormat, pombe_proteome)
+arabidopsis_fasta = Bio::FlatFile.open(Bio::FastaFormat, arabidopsis_proteome)
+
 # 1st: Create both databases prior to performing reciprocal best BLAST
-make_db(pombe_proteome, dbname = "POMBE")
-make_db(arabidopsis_proteome, dbname = "ARABIDOPSIS")
+make_db(pombe_fasta, pombe_proteome, dbname = "POMBE")
+make_db(arabidopsis_fasta, arabidopsis_proteome, dbname = "ARABIDOPSIS")
 
 # 2nd: Prompt the user to specify from command line which type of search to do
 # translate (y/n): if yes then a reciprocal blastp is performed, if not then tblastn + blastx
 
-pombe_fasta = Bio::FlatFile.open(Bio::FastaFormat, pombe_proteome)
-arabidopsis_fasta = Bio::FlatFile.open(Bio::FastaFormat, arabidopsis_proteome)
 
 #if ask_for_translation(arabidopsis_proteome)
 #    puts "ole"
@@ -144,7 +146,7 @@ arabidopsis_fasta.each_entry do |entry|
     blastx_best_hit = nil
   
     report.each_hit do |hit|
-      if !hit.evalue.nil? && hit.evalue <= evalue_threshold
+      if !hit.evalue.nil? && hit.evalue <= EVALUE_THRESHOLD
   
         blastx_best_hit = hit if blastx_best_hit.nil? || hit.evalue < blastx_best_hit.evalue
         #puts "#{hit.hit_id} : evalue #{hit.evalue}\t#{hit.target_id} "
@@ -163,7 +165,7 @@ end
 
 def write_candiates_report()
 
-File.open(output_report_file, 'w') do |file|
+    File.open(output_report_file, 'w') do |file|
 
     file.puts "This code was created by Miguel La Iglesia Mirones and Lucía Muñoz Gil"
     file.puts "Bioinformatics Programming Challenges Course at MSc Computational Biology (UPM)"
@@ -177,5 +179,5 @@ File.open(output_report_file, 'w') do |file|
     file.puts
     file.puts "---------------------------------------------------------------------------------------"
     file.puts
-  end
+    end
 end 
