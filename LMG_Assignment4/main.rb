@@ -36,9 +36,9 @@ def make_db(fasta_file, filename, dbname)
     sequence_type = fasta_sequence(fasta_file)    # get the sequence type to define -dbtype
     result = system("makeblastdb -in #{filename} -dbtype '#{sequence_type}' -out ./Databases/#{dbname}")
     if $?.success?
-        puts "BLAST database #{dbname} created successfully."
+        puts "BLAST database #{dbname} created successfully.\n"
     else
-        puts "Error creating BLAST database. Output:\n#{result}"
+        puts "Error creating BLAST database. Output:\n#{result}\n"
     end
 end
 
@@ -46,15 +46,18 @@ end
 # Ask user to input from comand line if wants to translate the CDS file for the proteome of some species
 
 def ask_for_translation(file)
-    puts "Do you want to translate #{file}? (yes/no):"
-    response = gets.chomp.downcase
-    case response
-    when "no", "n"
-        return false
-    when "yes", "y"
-        return true
-    else 
-        return "Invalid response. Please enter yes (y) or no (n)"
+    loop do
+        puts "Do you want to translate #{file}? (yes/no):"
+        response = $stdin.gets.chomp.downcase
+
+        case response
+        when "no", "n"
+            return false
+        when "yes", "y"
+            return true
+        else 
+            puts "Invalid response. Please enter yes (y) or no (n)"
+        end
     end
 end
 
@@ -94,11 +97,11 @@ else
 end
 
 
-
+# Prior to start, create BioRuby objects for both files
 pombe_fasta = Bio::FlatFile.open(Bio::FastaFormat, pombe_proteome)
 arabidopsis_fasta = Bio::FlatFile.open(Bio::FastaFormat, arabidopsis_proteome)
 
-# 1st: Create both databases prior to performing reciprocal best BLAST
+# 1st: Create both databases prior to performing reciprocal best BLAST. Specific databases types depend of the type of sequences in the file and would be created accordingly
 make_db(pombe_fasta, pombe_proteome, dbname = "POMBE")
 make_db(arabidopsis_fasta, arabidopsis_proteome, dbname = "ARABIDOPSIS")
 
@@ -106,9 +109,11 @@ make_db(arabidopsis_fasta, arabidopsis_proteome, dbname = "ARABIDOPSIS")
 # translate (y/n): if yes then a reciprocal blastp is performed, if not then tblastn + blastx
 
 
-#if ask_for_translation(arabidopsis_proteome)
-#    puts "ole"
-#end
+if ask_for_translation(arabidopsis_proteome)
+    puts "ole"
+else 
+    puts "no chasco"
+end
 
 # 3rd: Create factories to perform blast depending on what kind of blast the user wants to perform
 
