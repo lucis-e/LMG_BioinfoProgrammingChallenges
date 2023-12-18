@@ -7,6 +7,13 @@ require 'bio'
 # opcion traducir o no desde linea de comandos o como parametro del script
 # que decida que tipo de blast en función del tipo de secuencia
 
+# -----------------------CONSTANTS ----------------------------------------------
+
+START_CODON = 'ATG'
+STOP_CODON = ['TAA', 'TAG', 'TGA']
+EVALUE_THRESHOLD = 1e-6  # Threshold e-value as proposed in # meter ref que no me deja copiar y pegar en la maquina virtual
+
+
 # -------------- MAIN FUNCTIONS -------------------------------------------------
 
 # Check content of the fasta files of the proteomes, the sequences are genomic sequences or protein sequences
@@ -18,33 +25,9 @@ def fasta_sequence(fasta)
     elsif biosequence.instance_of? Bio::Sequence::AA
         return 'prot'
     end
-end
-
-# Habría que hacer otra para comprobar si un archivo que sea tipo nucleótido es de CDSs
-
-def only_cds?(nucleotide_fasta_file, start_codon, stop_codons)
-    nucleotide_fasta_file.each do |entry|
-        return false unless entry.seq.start_with?(start_codon)
-        return false unless stop_codons.any? {|stop_codon| entry.seq.end_with?(stop_codon)}
-    end
-    return true
-end
- 
-# Make database from proteome file depending of the type of sequences contained in the fasta file 
-
-def make_db(fasta_file, filename, dbname)
-    sequence_type = fasta_sequence(fasta_file)    # get the sequence type to define -dbtype
-    result = system("makeblastdb -in #{filename} -dbtype '#{sequence_type}' -out ./Databases/#{dbname}")
-    if $?.success?
-        puts "BLAST database #{dbname} created successfully.\n"
-    else
-        puts "Error creating BLAST database. Output:\n#{result}\n"
-    end
-end
-
+end 
 
 # Ask user to input from comand line if wants to translate the CDS file for the proteome of some species
-
 def ask_for_translation(file)
     loop do
         puts "Do you want to translate #{file}? (yes/no):"
@@ -62,7 +45,6 @@ def ask_for_translation(file)
 end
 
 
-
 # Translate CDS to protein: in case that user wants to perform reciprocal blastp
 
 def translate_cds_to_protein(cds_file, translated_filename)
@@ -77,6 +59,31 @@ def translate_cds_to_protein(cds_file, translated_filename)
     return proteome_file
 end
 
+# CREATE AND CHECK FASTA
+def create_and_check_fasta(proteome_file)
+    proteome_fasta = Bio::FlatFile.open(Bio::FastaFormat, proteome_file)
+    sequence_type = fasta_sequence(proteome_fasta)
+
+    case sequence_type
+    when 'nucl'
+        if ask_for_translation(proteome_file)
+            proteome_file = "TAIR10_translated.fa"
+            proteome_fasta = translate_cds_to_protein(proteome_fasta, proteome_file)
+        end
+    end
+    return [proteome_file, proteome_fasta]
+end
+
+# Make database from proteome file depending of the type of sequences contained in the fasta file 
+def make_db(fasta_file, filename, dbname)
+    sequence_type = fasta_sequence(fasta_file)    # get the sequence type to define -dbtype
+    result = system("makeblastdb -in #{filename} -dbtype '#{sequence_type}' -out ./Databases/#{dbname}")
+    if $?.success?
+        puts "BLAST database #{dbname} created successfully.\n"
+    else
+        puts "Error creating BLAST database. Output:\n#{result}\n"
+    end
+end
 # ------------------------ MAIN CODE --------------------------------------------
 
 # Check input: introducing the file names of the proteomes of the species to discover putativo orthologues among 
@@ -97,23 +104,21 @@ else
 end
 
 
-# Prior to start, create BioRuby objects for both files
-pombe_fasta = Bio::FlatFile.open(Bio::FastaFormat, pombe_proteome)
-arabidopsis_fasta = Bio::FlatFile.open(Bio::FastaFormat, arabidopsis_proteome)
+# 1st: create BioRuby objects and check for the sequence type of the fasta files. 
+# Prompt the user to specify from command line which type of search to do
+# translate (y/n): if yes then a reciprocal blastp is performed, if not then tblastn + blastx
 
-# 1st: Create both databases prior to performing reciprocal best BLAST. Specific databases types depend of the type of sequences in the file and would be created accordingly
+arabidopsis_proteome, arabidopsis_fasta = create_and_check_fasta(arabidopsis_proteome)
+pombe_proteome, pombe_fasta = create_and_check_fasta(pombe_proteome)
+
+
+puts only_cds?(arabidopsis_fasta, START_CODON, STOP_CODON)
+
+# 2nd:reate both databases prior to performing reciprocal best BLAST. Specific databases types depend of the type of sequences in the file and would be created accordingly
+
 make_db(pombe_fasta, pombe_proteome, dbname = "POMBE")
 make_db(arabidopsis_fasta, arabidopsis_proteome, dbname = "ARABIDOPSIS")
 
-# 2nd: Prompt the user to specify from command line which type of search to do
-# translate (y/n): if yes then a reciprocal blastp is performed, if not then tblastn + blastx
-
-
-if ask_for_translation(arabidopsis_proteome)
-    puts "ole"
-else 
-    puts "no chasco"
-end
 
 # 3rd: Create factories to perform blast depending on what kind of blast the user wants to perform
 
@@ -124,9 +129,6 @@ pombe_factory = Bio::Blast.local('blastx', './Databases/POMBE')
 # 4th: Perform blast and parse the output to do best hits reciprocal blast to find putative othologues
 
 putative_othologues_candidates = Hash.new
-
-EVALUE_THRESHOLD = 1e-6  # Threshold e-value as proposed in # meter ref que no me deja copiar y pegar en la maquina virtual
-
 
 arabidopsis_fasta.each_entry do |entry|
     query = ">#{entry.entry_id}\n#{entry.seq}"
