@@ -21,8 +21,14 @@ def fasta_sequence(fasta)
 end
 
 # Habría que hacer otra para comprobar si un archivo que sea tipo nucleótido es de CDSs
-#
-#
+
+def only_cds?(nucleotide_fasta_file, start_codon, stop_codons)
+    nucleotide_fasta_file.each do |entry|
+        return false unless entry.seq.start_with?(start_codon)
+        return false unless stop_codons.any? {|stop_codon| entry.seq.end_with?(stop_codon)}
+    end
+    return true
+end
  
 # Make database from proteome file depending of the type of sequences contained in the fasta file 
 
