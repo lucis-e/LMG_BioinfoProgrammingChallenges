@@ -34,3 +34,6 @@ References:
 [2] Moreno-Hagelsieb, G., &amp; Latimer, K. (2007). Choosing blast options for better detection of orthologs as Reciprocal Best Hits. Bioinformatics, 24(3), 319–324. https://doi.org/10.1093/bioinformatics/btm585  
 
 **FUTURE PERSPECTIVES**
+- Multiple Sequence Alignment: align the sequences of the orthologue candidates to generate a set of alignments that can be used for phylogenetic analyses.
+- Phylogenetic Analysis: construct phylogenetic trees to analyse the evolutionary relationship between the sequences.
+- 
