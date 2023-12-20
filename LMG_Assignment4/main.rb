@@ -27,52 +27,49 @@ def fasta_sequence(fasta)
     end
 end 
 
-# Ask user to input from comand line if wants to translate the CDS file for the proteome of some species
-def ask_for_translation(file)
-    loop do
-        puts "Do you want to translate #{file}? (yes/no):"
-        response = $stdin.gets.chomp.downcase
+# Filter out those sequences that do not start with a start codon and end with an end codo
 
-        case response
-        when "no", "n"
-            return false
-        when "yes", "y"
-            return true
-        else 
-            puts "Invalid response. Please enter yes (y) or no (n)"
-        end
+def only_cds?(nucleotide_fasta_file, start_codon, stop_codons)
+    filtered_proteome = []
+    nucleotide_fasta_file.each do |entry|
+        next unless entry.seq.start_with?(start_codon)
+        next unless stop_codons.any? {|stop_codon| entry.seq.end_with?(stop_codon)}
+        filtered_proteome << entry
     end
+    return filtered_proteome
 end
 
 
-# Translate CDS to protein: in case that user wants to perform reciprocal blastp
+# Translate CDS to protein: to perform a reciprocal blastp (protein query and protein db)
 
 def translate_cds_to_protein(cds_file, translated_filename)
     proteome_file = File.open(translated_filename, 'w')
     cds_file.each_entry do |entry|
-      cds_seq = Bio::Sequence.auto(entry.seq)
-      protein_seq = Bio::Sequence.auto(cds_seq.translate.chomp("*"))
-      proteome_file.puts protein_seq.output_fasta(entry.definition) #entry.entry_id cuando busque
+        cds_seq = Bio::Sequence.auto(entry.seq)
+        protein_seq = Bio::Sequence.auto(cds_seq.translate.chomp("*"))
+        proteome_file.puts protein_seq.output_fasta(entry.definition) #entry.entry_id cuando busque
     end
 
     proteome_file = Bio::FlatFile.auto(translated_filename)
     return proteome_file
 end
 
+
 # CREATE AND CHECK FASTA
 def create_and_check_fasta(proteome_file)
     proteome_fasta = Bio::FlatFile.open(Bio::FastaFormat, proteome_file)
     sequence_type = fasta_sequence(proteome_fasta)
-
     case sequence_type
     when 'nucl'
-        if ask_for_translation(proteome_file)
-            proteome_file = "TAIR10_translated.fa"
-            proteome_fasta = translate_cds_to_protein(proteome_fasta, proteome_file)
-        end
+        #proteome_fasta = only_cds?(proteome_fasta, START_CODON, STOP_CODON)
+        puts "Translating #{proteome_file}. This migth take a while..."
+        proteome_file = "TAIR10_translated.fa"
+        proteome_fasta = translate_cds_to_protein(proteome_fasta, proteome_file)
+        puts "fin"
     end
     return [proteome_file, proteome_fasta]
 end
+
 
 # Make database from proteome file depending of the type of sequences contained in the fasta file 
 def make_db(fasta_file, filename, dbname)
@@ -84,6 +81,62 @@ def make_db(fasta_file, filename, dbname)
         puts "Error creating BLAST database. Output:\n#{result}\n"
     end
 end
+
+# Perform blast and get best hit based on e-value
+def blast_and_best_hit(entry, factory)
+    query = ">#{entry.entry_id}\n#{entry.seq}"
+    report = factory.query(query)
+  
+    best_hit = nil
+  
+    report.each_hit do |hit|
+      if !hit.evalue.nil? && hit.evalue <= EVALUE_THRESHOLD
+        best_hit = hit if best_hit.nil? || hit.evalue < best_hit.evalue
+      end
+    end
+
+    return best_hit
+end
+
+# Search for the original sequence in the proteome to perform second blast (and not use the result of the alignment)
+def search_sequence(identifier,filename)
+    fasta = Bio::FlatFile.open(Bio::FastaFormat, filename)
+    fasta.each_entry do |entry|
+        if entry.entry_id.match?(Regexp.escape(identifier)) #entry.definition.include?(identifier)
+          return entry
+        end
+    end
+    puts "COULD NOT FIND YOUR SEQUENCE"
+    return
+end
+
+
+def write_candiates_report(candidate_hash, output_report_file)
+
+    File.open(output_report_file, 'w') do |file|
+
+    file.puts "This code was created by Miguel La Iglesia Mirones and Lucía Muñoz Gil"
+    file.puts "Bioinformatics Programming Challenges Course at MSc Computational Biology (UPM)"
+    file.puts "December 2023"
+    file.puts "-----------------------------------------------------------------------------------------------."
+    file.puts
+    file.puts "PUTATIVE ORTHOLOGUE CANDIDATES AMONG ARABIDOPSIS AND S.POMBE BY PERFORMING RECIPROCAL BEST BLAST" 
+    file.puts
+    file.puts "------------------------------------------------------------------------------------------------"
+    file.puts
+    file.puts "Total number of Orthologue candidate pairs: #{candidate_hash.size}"
+    file.puts 
+    file.puts "Total number of Orthologue candidates: #{candidate_hash.size * 2}"
+    file.puts
+    candidate_hash.each do |key, value|
+        file.puts "Arabidopsis protein #{key} and S.pombe protein #{value} are Orthologue candidates"
+    end
+    file.puts
+    file.puts "------------------------------------------------------------------------------------------------"
+    file.puts
+    end
+end 
+
 # ------------------------ MAIN CODE --------------------------------------------
 
 # Check input: introducing the file names of the proteomes of the species to discover putativo orthologues among 
@@ -105,16 +158,12 @@ end
 
 
 # 1st: create BioRuby objects and check for the sequence type of the fasta files. 
-# Prompt the user to specify from command line which type of search to do
-# translate (y/n): if yes then a reciprocal blastp is performed, if not then tblastn + blastx
+# Translate the proteome file with cds nucleotide sequences into proteins to perform reciprocal blastp
 
 arabidopsis_proteome, arabidopsis_fasta = create_and_check_fasta(arabidopsis_proteome)
 pombe_proteome, pombe_fasta = create_and_check_fasta(pombe_proteome)
 
-
-puts only_cds?(arabidopsis_fasta, START_CODON, STOP_CODON)
-
-# 2nd:reate both databases prior to performing reciprocal best BLAST. Specific databases types depend of the type of sequences in the file and would be created accordingly
+# 2nd:create both databases prior to performing reciprocal best BLAST. Specific databases types depend of the type of sequences in the file and would be created accordingly
 
 make_db(pombe_fasta, pombe_proteome, dbname = "POMBE")
 make_db(arabidopsis_fasta, arabidopsis_proteome, dbname = "ARABIDOPSIS")
@@ -122,8 +171,8 @@ make_db(arabidopsis_fasta, arabidopsis_proteome, dbname = "ARABIDOPSIS")
 
 # 3rd: Create factories to perform blast depending on what kind of blast the user wants to perform
 
-ara_factory = Bio::Blast.local('tblastn', './Databases/ARABIDOPSIS')
-pombe_factory = Bio::Blast.local('blastx', './Databases/POMBE')
+ara_factory = Bio::Blast.local('blastp', './Databases/ARABIDOPSIS')
+pombe_factory = Bio::Blast.local('blastp', './Databases/POMBE')
 
 
 # 4th: Perform blast and parse the output to do best hits reciprocal blast to find putative othologues
@@ -131,60 +180,26 @@ pombe_factory = Bio::Blast.local('blastx', './Databases/POMBE')
 putative_othologues_candidates = Hash.new
 
 arabidopsis_fasta.each_entry do |entry|
-    query = ">#{entry.entry_id}\n#{entry.seq}"
-    report = pombe_factory.query(query)
-  
-    tblastn_best_hit = nil
-  
-    report.each_hit do |hit|
-      if !hit.evalue.nil? && hit.evalue <= EVALUE_THRESHOLD
-        tblastn_best_hit = hit if tblastn_best_hit.nil? || hit.evalue < tblastn_best_hit.evalue
-        puts "#{hit.hit_id} : evalue #{hit.evalue}\t#{hit.target_id} "
-      end
-    end
-    puts tblastn_best_hit
-  
-    next if tblastn_best_hit.nil?
-  
-    query = ">#{tblastn_best_hit.hit_id}\n#{tblastn_best_hit.target_seq}"
-    puts query
-    report = ara_factory.query(query)
-  
-    blastx_best_hit = nil
-  
-    report.each_hit do |hit|
-      if !hit.evalue.nil? && hit.evalue <= EVALUE_THRESHOLD
-  
-        blastx_best_hit = hit if blastx_best_hit.nil? || hit.evalue < blastx_best_hit.evalue
-        #puts "#{hit.hit_id} : evalue #{hit.evalue}\t#{hit.target_id} "
-      end
-    end
-    #puts blastx_best_hit
-  
-    next if blastx_best_hit.nil?
-  
-    if blastx_best_hit.hit_id == entry.entry_id # Si el blastx de la proteina->CDS da el ID del entry-CDS de TAIR
-      puts "#{entry.entry_id} is an orthologue candidate to #{tblastn_best_hit.hit_id}"
-      putative_othologues_candidates[entry.entry_id] = tblastn_best_hit.hit_id
+    first_blastp_best = blast_and_best_hit(entry, pombe_factory)    # perform first blastp with protein A from Arabidopsis
+    next if first_blastp_best.nil?
+
+    # Retrieve original sequence to perform second blast
+    first_blastp_best_id = first_blastp_best.target_def.split("|")[0].delete(' ')
+    first_blastp_best_entry = search_sequence(first_blastp_best_id, pombe_proteome)
+
+    second_blastp_best = blast_and_best_hit(first_blastp_best_entry, ara_factory)    # perform second blastp with best hit from S.pombe
+    next if second_blastp_best.nil?
+    
+    second_blastp_best_id = second_blastp_best.target_def.split("|")[0].delete(' ')
+
+    if second_blastp_best_id == entry.entry_id.delete(' ') # Si el blastx de la proteina->CDS da el ID del entry-CDS de TAIR
+      puts "#{second_blastp_best_id} is an orthologue candidate to #{first_blastp_best_entry.entry_id}"
+      putative_othologues_candidates[second_blastp_best_id] = first_blastp_best_id
+    else
+        puts "-#{second_blastp_best_id}- is not equal to -#{entry.entry_id.delete(' ')}-"
     end
 end
 
+output_report_file = './Orthologue_candidates_report.txt'
 
-def write_candiates_report()
-
-    File.open(output_report_file, 'w') do |file|
-
-    file.puts "This code was created by Miguel La Iglesia Mirones and Lucía Muñoz Gil"
-    file.puts "Bioinformatics Programming Challenges Course at MSc Computational Biology (UPM)"
-    file.puts "December 2023"
-    file.puts "-----------------------------------------------------------------------------------------------."
-    file.puts
-    file.puts "PUTATIVE ORTHOLOGUE CANDIDATES AMONG ARABIDOPSIS AND S.POMBE BY PERFORMING RECIPROCAL BEST BLAST" 
-    file.puts
-    file.puts "------------------------------------------------------------------------------------------------"
-    file.puts
-    file.puts
-    file.puts "---------------------------------------------------------------------------------------"
-    file.puts
-    end
-end 
+write_candiates_report(putative_othologues_candidates, output_report_file)
