@@ -29,6 +29,7 @@ ruby main.rb proteome_pombe.fa TAIR10.cds
 - Required coverage of at least 50% in the alignments (overlap)
 
 References:
+
 [1] Ward, N., &amp; Moreno-Hagelsieb, G. (2014). Quickly finding orthologs as reciprocal best hits with Blat, last, and UBLAST: How much do we miss? PLoS ONE, 9(7). https://doi.org/10.1371/journal.pone.0101850  
 [2] Moreno-Hagelsieb, G., &amp; Latimer, K. (2007). Choosing blast options for better detection of orthologs as Reciprocal Best Hits. Bioinformatics, 24(3), 319–324. https://doi.org/10.1093/bioinformatics/btm585  
 
