@@ -20,8 +20,8 @@ ruby main.rb proteome_pombe.fa TAIR10.cds
 ```
 
 **OUTPUT**
-- TAIR10_translated.fa: translated proteome of Arabidopsis (from CDS nucleotide sequences to protein)
-- Orthologue_candidates_report: report with the total number of pairs of orthologue candidates, the total number of candidates and all names and belonging species for the pairs of candidates.
+- **TAIR10_translated.fa**: translated proteome of Arabidopsis (from CDS nucleotide sequences to protein)
+- **Orthologue_candidates_report.txt**: report with the total number of pairs of orthologue candidates, the total number of candidates and all names and belonging species for the pairs of candidates.
 
 **"SENSIBLE" BLAST PARAMETERS AND REFERENCES**
 - Maximum E-value threshold of $evalue = 1e^{-6}$
