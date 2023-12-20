@@ -20,14 +20,17 @@ ruby main.rb proteome_pombe.fa TAIR10.cds
 ```
 
 **OUTPUT**
+
 - **TAIR10_translated.fa**: translated proteome of Arabidopsis (from CDS nucleotide sequences to protein)
 - **Orthologue_candidates_report.txt**: report with the total number of pairs of orthologue candidates, the total number of candidates and all names and belonging species for the pairs of candidates.
 
 **"SENSIBLE" BLAST PARAMETERS**
+
 - Maximum E-value threshold of $evalue = 1e^{-6}$
 - Sorting from minimum to maximum E-value, best hit is the one with lower E-value.
 
 **POSSIBLE FUTURE STEPS**  
+
 In order to continue our analysis, based on similar projects we have seen, we propose the following:
 - Employing other well-stablished methods including tree-methods or other graph-methods (Pairwise sequence similarity comparisons) appart from Best Reciprocal Hits) like Reciprocal Smallest Distance (RSD).
 - Employing stardard databases of putative orthologues as EggNOG, Homologene or InParanoid
@@ -36,6 +39,7 @@ In order to continue our analysis, based on similar projects we have seen, we pr
 - Functional Annotation: compare both putative orthologue proteins annotations with GO Terms. The more shared GO terms, the more probable conserved domains, probably involved in the same biological processes and the more probable to be orthologues
 
 **REFERENCES**
+
 [1] Camacho, C., Coulouris, G., Avagyan, V., Ma, N., Papadopoulos, J., Bealer, K., &amp; Madden, T. L. (2009). BLAST+: Architecture and applications. BMC Bioinformatics, 10(1). https://doi.org/10.1186/1471-2105-10-421 
 
 [2] Ward, N., &amp; Moreno-Hagelsieb, G. (2014). Quickly finding orthologs as reciprocal best hits with Blat, last, and UBLAST: How much do we miss? PLoS ONE, 9(7). https://doi.org/10.1371/journal.pone.0101850  
