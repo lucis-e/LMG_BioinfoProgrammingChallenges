@@ -44,6 +44,7 @@ In order to continue our analysis, based on similar projects we have seen, we pr
 - Employing stardard databases of putative orthologues as EggNOG, Homologene or InParanoid
 - Confirming Best Reciprocal Hits using fast BRH analysis software: lastal, diamond or MM2seqs2. (Hernández-Salmerón et al., 2020)
 - Phylogenetic Analysis: construct phylogenetic trees to analyse the evolutionary relationship between the sequences.
+- Functional Annotation: compare both putative orthologue proteins annotations with GO Terms. The more shared GO terms, the more probable conserved domains, probably involved in the same biological processes and the more probable to be orthologues
 
 References:
 
