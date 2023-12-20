@@ -21,6 +21,6 @@ ruby main.rb ArabidopsisSubNetwork_GeneList.txt
 - gff_report.txt: Report on those genes that do not show the CTTCTT motif on their exonic regions
 
 **"SENSIBLE" BLAST PARAMETERS AND REFERENCES**
-- Maximum E-value threshold of  ($evalue^1e-6$)
+- Maximum E-value threshold of $evalue = 1e^{-6}$
 
 **FUTURE PERSPECTIVES**
