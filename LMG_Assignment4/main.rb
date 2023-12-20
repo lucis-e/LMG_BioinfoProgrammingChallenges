@@ -1,22 +1,19 @@
 require 'bio'
 
-# cosas que se le pueden añadir
-# Parametros para hacer el blast
-# comprobar qeu son cds
-# que hacemso depsues?
-# opcion traducir o no desde linea de comandos o como parametro del script
-# que decida que tipo de blast en función del tipo de secuencia
+# -----------------------CONSTANTS ----------------------- #
 
-# -----------------------CONSTANTS ----------------------------------------------
-
+# Start and stop codons to verify CDS sequences
 START_CODON = 'ATG'
 STOP_CODON = ['TAA', 'TAG', 'TGA']
-EVALUE_THRESHOLD = 1e-6  # Threshold e-value as proposed in # meter ref que no me deja copiar y pegar en la maquina virtual
+# Evalue threshold for blast report hits
+EVALUE_THRESHOLD = 1e-6  
 
+# ----------------------- MAIN FUNCTIONS ----------------------- #
 
-# -------------- MAIN FUNCTIONS -------------------------------------------------
+# Checks fasta file type: nucleotide or protein
+# @param fasta [String] fasta file to check
+# @return [String] nucleotide or protein
 
-# Check content of the fasta files of the proteomes, the sequences are genomic sequences or protein sequences
 def fasta_sequence(fasta)
     first_seq = fasta.first.seq
     biosequence = Bio::Sequence.new(first_seq).auto   # guess the sequence type of this file
@@ -27,7 +24,11 @@ def fasta_sequence(fasta)
     end
 end 
 
-# Filter out those sequences that do not start with a start codon and end with an end codo
+# Filter out those sequences that are not CDS
+# @param nucleotide_fasta_file [String] the fasta file
+# @param start_codon [String] the start codon
+# @param stop_codons [Array] the stop codons
+# @return [Array] all fasta entrys that are actually CDS
 
 def only_cds?(nucleotide_fasta_file, start_codon, stop_codons)
     filtered_proteome = []
@@ -39,8 +40,10 @@ def only_cds?(nucleotide_fasta_file, start_codon, stop_codons)
     return filtered_proteome
 end
 
-
-# Translate CDS to protein: to perform a reciprocal blastp (protein query and protein db)
+# Translate fasta CDS file to fasta protein file
+# @param cds_filtered [String] the cds file already filtered
+# @param translated_filename [String] the name of the new file
+# @return [Bio::Sequence] fasta file with proteins
 
 def translate_cds_to_protein(cds_filtered, translated_filename)
     proteome_file = File.open(translated_filename, 'w')
@@ -54,8 +57,11 @@ def translate_cds_to_protein(cds_filtered, translated_filename)
     return proteome_file
 end
 
+# Creates Bio::FastaFormat file with proteins and checks only CDS sequences when nucleotide
+# @param proteome_file [String] the file to create and check
+# @return [proteome_file] fasta file name with proteins
+# @return [proteome_fasta] fasta file with proteins
 
-# CREATE AND CHECK FASTA
 def create_and_check_fasta(proteome_file)
     proteome_fasta = Bio::FlatFile.open(Bio::FastaFormat, proteome_file)
     sequence_type = fasta_sequence(proteome_fasta)
@@ -70,7 +76,12 @@ def create_and_check_fasta(proteome_file)
 end
 
 
-# Make database from proteome file depending of the type of sequences contained in the fasta file 
+# Creates data base from fasta file
+# @param fasta_file [Bio::FastaFormat] the file to create the data base
+# @param filename [String] the file name
+# @param dbname [String] the data base name
+# @return [void]
+
 def make_db(fasta_file, filename, dbname)
     sequence_type = fasta_sequence(fasta_file)    # get the sequence type to define -dbtype
     result = system("makeblastdb -in #{filename} -dbtype '#{sequence_type}' -out ./Databases/#{dbname}")
@@ -81,7 +92,11 @@ def make_db(fasta_file, filename, dbname)
     end
 end
 
-# Perform blast and get best hit based on e-value
+# Searchs best hit regarding e-value for a query blast
+# @param entry [Bio::FastaFormat] the fasta entry as query
+# @param factory [Bio::Blast] the blast factory to search
+# @return [Bio::Blast] fthe best hit found for report
+
 def blast_and_best_hit(entry, factory)
     query = ">#{entry.entry_id}\n#{entry.seq}"
     report = factory.query(query)
@@ -93,7 +108,11 @@ def blast_and_best_hit(entry, factory)
     return best_hit
 end
 
-# Search for the original sequence in the proteome to perform second blast (and not use the result of the alignment)
+# Searchs for an entry of a file given a protein identifier
+# @param identifier [String] the protein ID
+# @param fasta_file [String] the fasta file where the protein is
+# @return [Bio::FastaForma] the entry of with that ID
+
 def search_sequence(identifier,fasta_file)
     fasta = Bio::FlatFile.open(Bio::FastaFormat, fasta_file)
 
@@ -106,6 +125,10 @@ def search_sequence(identifier,fasta_file)
     end
 end
 
+# Writes report with putative orthologues genes
+# @param cadidate_hash [Hash] the orthologues found
+# @param output_report_file [String] the name of the file to report
+# @return [void]
 
 def write_candiates_report(candidate_hash, output_report_file)
 
@@ -135,14 +158,13 @@ end
 
 # ------------------------ MAIN CODE --------------------------------------------
 
-# Check input: introducing the file names of the proteomes of the species to discover putativo orthologues among 
+# Check number of arguments for two files
+
 if ARGV.length != 2
     abort "Incorrect number of files passed. Proteome files of the two species should be specified"
 end
 
-# Check order of arguments: to make the databases, we should know which file correspond to which species
-
-
+# Check order of arguments
 
 if ARGV[0] == "TAIR10_cds.fa" && ARGV[1] == "proteome_pombe.fa"    
     arabidopsis_proteome = ARGV[0]
@@ -155,41 +177,47 @@ else
 end
 
 
-# 1st: create BioRuby objects and check for the sequence type of the fasta files. 
-# Translate the proteome file with cds nucleotide sequences into proteins to perform reciprocal blastp
+# 1st: Create BioRuby objects from files and check them
+# Translates nucleotide file to proteins if found
 
 arabidopsis_proteome, arabidopsis_fasta = create_and_check_fasta(arabidopsis_proteome)
 pombe_proteome, pombe_fasta = create_and_check_fasta(pombe_proteome)
 
-# 2nd:create both databases prior to performing reciprocal best BLAST. Specific databases types depend of the type of sequences in the file and would be created accordingly
+# 2nd: Create both databases from files.
 
 make_db(pombe_fasta, pombe_proteome, dbname = "POMBE")
 make_db(arabidopsis_fasta, arabidopsis_proteome, dbname = "ARABIDOPSIS")
 
 
-# 3rd: Create factories to perform blast depending on what kind of blast the user wants to perform
+# 3rd: Create factories to perform blast search on both data bases
 
 ara_factory = Bio::Blast.local('blastp', './Databases/ARABIDOPSIS')
 pombe_factory = Bio::Blast.local('blastp', './Databases/POMBE')
 
 
-# 4th: Perform blast and parse the output to do best hits reciprocal blast to find putative othologues
+# 4th: Perform best reciprocal hits blast search
 
+# Creates a hash to store orthologues
 putative_othologues_candidates = Hash.new
 
+# Loops over one of the file entries
 pombe_fasta.each_entry do |entry|
-    first_blastp_best = blast_and_best_hit(entry, ara_factory)    # perform first blastp with protein A from Arabidopsis
+    # Retrieve first blastp best hit
+    first_blastp_best = blast_and_best_hit(entry, ara_factory)
     next if first_blastp_best.nil?
 
     # Retrieve original sequence to perform second blast
     first_blastp_best_id = first_blastp_best.target_def.split("|")[0].delete(' ')
     first_blastp_best_entry = search_sequence(first_blastp_best_id, arabidopsis_proteome)
 
+    # Retrieve second blastp best hit and its identifier
     second_blastp_best = blast_and_best_hit(first_blastp_best_entry, pombe_factory)    # perform second blastp with best hit from S.pombe
     next if second_blastp_best.nil?
     
     second_blastp_best_id = second_blastp_best.target_def.split("|")[0].delete(' ')
 
+    # If second blastp best hit turns out to be the entry of the file parsed, then orthologues have
+    # been found
     if second_blastp_best_id == entry.entry_id.delete(' ') 
       puts "#{second_blastp_best_id} is an orthologue candidate to #{first_blastp_best_entry.entry_id}"
       putative_othologues_candidates[first_blastp_best_id] = second_blastp_best_id
@@ -199,6 +227,7 @@ pombe_fasta.each_entry do |entry|
     end
 end
 
-output_report_file = './Orthologue_candidates_report.txt'
+# Writes report with orthologue genes
 
+output_report_file = './Orthologue_candidates_report.txt'
 write_candiates_report(putative_othologues_candidates, output_report_file)
