@@ -42,9 +42,9 @@ end
 
 # Translate CDS to protein: to perform a reciprocal blastp (protein query and protein db)
 
-def translate_cds_to_protein(cds_file, translated_filename)
+def translate_cds_to_protein(cds_filtered, translated_filename)
     proteome_file = File.open(translated_filename, 'w')
-    cds_file.each_entry do |entry|
+    cds_filtered.each do |entry|
         cds_seq = Bio::Sequence.auto(entry.seq)
         protein_seq = Bio::Sequence.auto(cds_seq.translate.chomp("*"))
         proteome_file.puts protein_seq.output_fasta(entry.definition) #entry.entry_id cuando busque
@@ -61,11 +61,10 @@ def create_and_check_fasta(proteome_file)
     sequence_type = fasta_sequence(proteome_fasta)
     case sequence_type
     when 'nucl'
-        #proteome_fasta = only_cds?(proteome_fasta, START_CODON, STOP_CODON)
+        proteome_fasta = only_cds?(proteome_fasta, START_CODON, STOP_CODON)
         puts "Translating #{proteome_file}. This migth take a while..."
         proteome_file = "TAIR10_translated.fa"
         proteome_fasta = translate_cds_to_protein(proteome_fasta, proteome_file)
-        puts "fin"
     end
     return [proteome_file, proteome_fasta]
 end
@@ -87,27 +86,24 @@ def blast_and_best_hit(entry, factory)
     query = ">#{entry.entry_id}\n#{entry.seq}"
     report = factory.query(query)
   
-    best_hit = nil
-  
-    report.each_hit do |hit|
-      if !hit.evalue.nil? && hit.evalue <= EVALUE_THRESHOLD
-        best_hit = hit if best_hit.nil? || hit.evalue < best_hit.evalue
-      end
-    end
+    filtered_hits = report.hits.select{|hit| !hit.evalue.nil? && hit.evalue <= EVALUE_THRESHOLD}
+    sorted_hits = filtered_hits.sort_by {|hit| hit.evalue}
 
+    best_hit = sorted_hits.first
     return best_hit
 end
 
 # Search for the original sequence in the proteome to perform second blast (and not use the result of the alignment)
-def search_sequence(identifier,filename)
-    fasta = Bio::FlatFile.open(Bio::FastaFormat, filename)
-    fasta.each_entry do |entry|
-        if entry.entry_id.match?(Regexp.escape(identifier)) #entry.definition.include?(identifier)
-          return entry
-        end
+def search_sequence(identifier,fasta_file)
+    fasta = Bio::FlatFile.open(Bio::FastaFormat, fasta_file)
+
+    found_entry = fasta.find { |entry| entry.entry_id.match?(Regexp.escape(identifier))}
+    if found_entry
+        return found_entry
+    else
+        puts "COULD NOT FIND YOUR SEQUENCE"
+        return
     end
-    puts "COULD NOT FIND YOUR SEQUENCE"
-    return
 end
 
 
@@ -146,7 +142,9 @@ end
 
 # Check order of arguments: to make the databases, we should know which file correspond to which species
 
-if ARGV[0] == "TAIR10_cds.fa" && ARGV[1] == "proteome_pombe.fa"
+
+
+if ARGV[0] == "TAIR10_cds.fa" && ARGV[1] == "proteome_pombe.fa"    
     arabidopsis_proteome = ARGV[0]
     pombe_proteome = ARGV[1]
 elsif ARGV[1] == "TAIR10_cds.fa" && ARGV[0] == "proteome_pombe.fa"
@@ -179,22 +177,23 @@ pombe_factory = Bio::Blast.local('blastp', './Databases/POMBE')
 
 putative_othologues_candidates = Hash.new
 
-arabidopsis_fasta.each_entry do |entry|
-    first_blastp_best = blast_and_best_hit(entry, pombe_factory)    # perform first blastp with protein A from Arabidopsis
+pombe_fasta.each_entry do |entry|
+    first_blastp_best = blast_and_best_hit(entry, ara_factory)    # perform first blastp with protein A from Arabidopsis
     next if first_blastp_best.nil?
 
     # Retrieve original sequence to perform second blast
     first_blastp_best_id = first_blastp_best.target_def.split("|")[0].delete(' ')
-    first_blastp_best_entry = search_sequence(first_blastp_best_id, pombe_proteome)
+    first_blastp_best_entry = search_sequence(first_blastp_best_id, arabidopsis_proteome)
 
-    second_blastp_best = blast_and_best_hit(first_blastp_best_entry, ara_factory)    # perform second blastp with best hit from S.pombe
+    second_blastp_best = blast_and_best_hit(first_blastp_best_entry, pombe_factory)    # perform second blastp with best hit from S.pombe
     next if second_blastp_best.nil?
     
     second_blastp_best_id = second_blastp_best.target_def.split("|")[0].delete(' ')
 
-    if second_blastp_best_id == entry.entry_id.delete(' ') # Si el blastx de la proteina->CDS da el ID del entry-CDS de TAIR
+    if second_blastp_best_id == entry.entry_id.delete(' ') 
       puts "#{second_blastp_best_id} is an orthologue candidate to #{first_blastp_best_entry.entry_id}"
-      putative_othologues_candidates[second_blastp_best_id] = first_blastp_best_id
+      putative_othologues_candidates[first_blastp_best_id] = second_blastp_best_id
+      puts putative_othologues_candidates.length
     else
         puts "-#{second_blastp_best_id}- is not equal to -#{entry.entry_id.delete(' ')}-"
     end
